@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,13 +13,64 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EyeFighter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lB-YC-LJX" customClass="ARSCNView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcg-Oa-TJy">
+                                <rect key="frame" x="0.0" y="20" width="187.5" height="313.5"/>
+                                <color key="backgroundColor" red="1" green="0.25882352939999997" blue="0.0" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7VE-oc-d4f">
+                                <rect key="frame" x="187.5" y="20" width="187.5" height="313.5"/>
+                                <color key="backgroundColor" red="1" green="0.25882352939999997" blue="0.0" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jPA-xh-WoA">
+                                <rect key="frame" x="0.0" y="333.5" width="187.5" height="333.5"/>
+                                <color key="backgroundColor" red="1" green="0.25882352939999997" blue="0.0" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YAI-KS-s0M">
+                                <rect key="frame" x="187.5" y="333.5" width="187.5" height="333.5"/>
+                                <color key="backgroundColor" red="1" green="0.25882352939999997" blue="0.0" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="jPA-xh-WoA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9lg-bC-Rw4"/>
+                            <constraint firstItem="9lB-YC-LJX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ebr-4i-Brv"/>
+                            <constraint firstAttribute="centerY" secondItem="mcg-Oa-TJy" secondAttribute="bottom" id="Gcq-po-9ji"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7VE-oc-d4f" secondAttribute="trailing" id="IdM-LN-ebF"/>
+                            <constraint firstItem="jPA-xh-WoA" firstAttribute="top" secondItem="mcg-Oa-TJy" secondAttribute="bottom" id="IqW-ah-6Ro"/>
+                            <constraint firstItem="mcg-Oa-TJy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="L38-JD-wvP"/>
+                            <constraint firstItem="7VE-oc-d4f" firstAttribute="leading" secondItem="mcg-Oa-TJy" secondAttribute="trailing" id="LUn-Em-Xgh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YAI-KS-s0M" secondAttribute="trailing" id="Mnf-c3-MSo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jPA-xh-WoA" secondAttribute="bottom" id="NQl-hz-z0u"/>
+                            <constraint firstItem="YAI-KS-s0M" firstAttribute="top" secondItem="7VE-oc-d4f" secondAttribute="bottom" id="OdU-HE-LB1"/>
+                            <constraint firstAttribute="centerX" secondItem="mcg-Oa-TJy" secondAttribute="trailing" id="UbG-FI-aPJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9lB-YC-LJX" secondAttribute="trailing" id="Us2-sD-JG7"/>
+                            <constraint firstItem="YAI-KS-s0M" firstAttribute="leading" secondItem="jPA-xh-WoA" secondAttribute="trailing" id="YRt-2h-cp9"/>
+                            <constraint firstItem="9lB-YC-LJX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cR2-85-zTm"/>
+                            <constraint firstItem="7VE-oc-d4f" firstAttribute="bottom" secondItem="mcg-Oa-TJy" secondAttribute="bottom" id="eTJ-rC-THl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9lB-YC-LJX" secondAttribute="bottom" id="ggx-3d-N6j"/>
+                            <constraint firstAttribute="centerX" secondItem="jPA-xh-WoA" secondAttribute="trailing" id="ly0-ba-Eki"/>
+                            <constraint firstItem="7VE-oc-d4f" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pp6-zl-j8P"/>
+                            <constraint firstItem="mcg-Oa-TJy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="whX-b3-eHd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YAI-KS-s0M" secondAttribute="bottom" id="yqY-W9-vdT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="downLeftView" destination="jPA-xh-WoA" id="Twg-aR-1Gx"/>
+                        <outlet property="downRightView" destination="YAI-KS-s0M" id="sqW-O3-N4M"/>
+                        <outlet property="sceneView" destination="9lB-YC-LJX" id="2j8-vA-ZGN"/>
+                        <outlet property="upLeftView" destination="mcg-Oa-TJy" id="4Qg-Rv-7P9"/>
+                        <outlet property="upRightView" destination="7VE-oc-d4f" id="qGi-r1-kR5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
