@@ -15,6 +15,7 @@
 		0B1DFF122253605300329B7F /* EyeFighterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1DFF112253605300329B7F /* EyeFighterTests.swift */; };
 		0B1DFF1D2253605300329B7F /* EyeFighterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1DFF1C2253605300329B7F /* EyeFighterUITests.swift */; };
 		0BD08100225C9FBD0089209A /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD080FF225C9FBD0089209A /* Calibration.swift */; };
+		0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE11340225CC50A002A3429 /* EyePosition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		0B1DFF1C2253605300329B7F /* EyeFighterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeFighterUITests.swift; sourceTree = "<group>"; };
 		0B1DFF1E2253605300329B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BD080FF225C9FBD0089209A /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
+		0BE11340225CC50A002A3429 /* EyePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyePosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				0B1DFEFC2253605000329B7F /* AppDelegate.swift */,
+				0BE11340225CC50A002A3429 /* EyePosition.swift */,
 				0BD080FF225C9FBD0089209A /* Calibration.swift */,
 				0B1DFEFE2253605000329B7F /* ViewController.swift */,
 				0B1DFF002253605000329B7F /* Main.storyboard */,
@@ -196,13 +199,16 @@
 				TargetAttributes = {
 					0B1DFEF82253605000329B7F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					0B1DFF0C2253605300329B7F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 0B1DFEF82253605000329B7F;
 					};
 					0B1DFF172253605300329B7F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 0B1DFEF82253605000329B7F;
 					};
 				};
@@ -259,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */,
 				0B1DFEFF2253605000329B7F /* ViewController.swift in Sources */,
 				0BD08100225C9FBD0089209A /* Calibration.swift in Sources */,
 				0B1DFEFD2253605000329B7F /* AppDelegate.swift in Sources */,
@@ -445,7 +452,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.neoxapps.laservision;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -463,7 +470,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.neoxapps.laservision;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -483,7 +490,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.neoxapps.EyeFighterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EyeFighter.app/EyeFighter";
 			};
@@ -504,7 +511,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.neoxapps.EyeFighterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EyeFighter.app/EyeFighter";
 			};
@@ -524,7 +531,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.neoxapps.EyeFighterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = EyeFighter;
 			};
@@ -544,7 +551,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.neoxapps.EyeFighterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = EyeFighter;
 			};

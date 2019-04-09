@@ -8,35 +8,36 @@
 
 import Foundation
 
+enum CalibrationState: String {
+    case initial, center, right, left, up, down, done
+    
+    var next: CalibrationState {
+        switch self {
+        case .initial:
+            return .center
+        case .center:
+            return .right
+        case .right:
+            return .down
+        case .down:
+            return .left
+        case .left:
+            return .up
+        case .up:
+            return .done
+        case .done:
+            return .done
+        }
+    }
+}
+
 protocol CalibrationDelegate {
     func calibrationStateDidChange()
+    func calibrationDidChange(for state: CalibrationState, value: Float)
 }
 
 class Calibration {
-    enum CalibrationState {
-        case initial, center, right, left, up, down, done
-        
-        var next: CalibrationState {
-            switch self {
-            case .initial:
-                return .center
-            case .center:
-                return .right
-            case .right:
-                return .down
-            case .down:
-                return .left
-            case .left:
-                return .up
-            case .up:
-                return .done
-            case .done:
-                return .done
-            }
-        }
-    }
-    
-    var state: CalibrationState = .center {
+    var state: CalibrationState = .initial {
         didSet {
             delegate?.calibrationStateDidChange()
         }
@@ -44,12 +45,42 @@ class Calibration {
     
     var delegate: CalibrationDelegate?
     
-    var centerX: Float?
-    var centerY: Float?
-    var maxX: Float?
-    var minX: Float?
-    var maxY: Float?
-    var minY: Float?
+    var centerX: Float? {
+        didSet {
+            guard let value = centerX else { return }
+            delegate?.calibrationDidChange(for: state, value: value)
+        }
+    }
+    var centerY: Float? {
+        didSet {
+            guard let value = centerY else { return }
+            delegate?.calibrationDidChange(for: state, value: value)
+        }
+    }
+    var maxX: Float? {
+        didSet {
+            guard let value = maxX else { return }
+            delegate?.calibrationDidChange(for: state, value: value)
+        }
+    }
+    var minX: Float? {
+        didSet {
+            guard let value = minX else { return }
+            delegate?.calibrationDidChange(for: state, value: value)
+        }
+    }
+    var maxY: Float? {
+        didSet {
+            guard let value = maxY else { return }
+            delegate?.calibrationDidChange(for: state, value: value)
+        }
+    }
+    var minY: Float? {
+        didSet {
+            guard let value = minY else { return }
+            delegate?.calibrationDidChange(for: state, value: value)
+        }
+    }
     
     func calibrate(to x: Float, y: Float) {
         switch state {
@@ -82,7 +113,7 @@ class Calibration {
         minY = nil
     }
     
-    func getPosition(x: Float, y: Float) -> (x: Float, y: Float)? {
+    func getPosition(x: Float, y: Float) -> EyePosition? {
         guard let maxX = maxX,
             let minX = minX,
             let maxY = maxY,
@@ -92,6 +123,9 @@ class Calibration {
         
         let xBorder = x < centerX ? minX : maxX
         let yBorder = y < centerY ? minY : maxY
-        return (x: x / xBorder, y: y / yBorder)
+        let xResult = x < centerX ? max((x / (xBorder * -1)), -1.0) : min((x / xBorder), 1.0)
+        let yResult = y < centerY ? max((y / (yBorder * -1)), -1.0) : min((y / yBorder), 1.0)
+        
+        return EyePosition(x: xResult, y: yResult)
     }
 }
