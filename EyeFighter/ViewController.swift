@@ -12,16 +12,31 @@ import ARKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var sceneView: ARSCNView!
-    @IBOutlet weak var upLeftView: UIView!
-    @IBOutlet weak var upRightView: UIView!
-    @IBOutlet weak var downLeftView: UIView!
-    @IBOutlet weak var downRightView: UIView!
+    @IBOutlet weak var upView: UIView!
+    @IBOutlet weak var rightView: UIView!
+    @IBOutlet weak var downView: UIView!
+    @IBOutlet weak var leftView: UIView!
+    
+    let calibration = Calibration()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextCalibrationState)))
+        view.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(resetCalibration)))
+
         guard ARFaceTrackingConfiguration.isSupported else { fatalError() }
         sceneView.delegate = self
+        
+        calibration.delegate = self
+    }
+    
+    @objc private func nextCalibrationState() {
+        calibration.next()
+    }
+    
+    @objc private func resetCalibration() {
+        calibration.reset()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,7 +45,6 @@ class ViewController: UIViewController {
         let configuration = ARFaceTrackingConfiguration()
         sceneView.session.run(configuration)
     }
-
 }
 
 extension ViewController: ARSCNViewDelegate {
@@ -45,11 +59,17 @@ extension ViewController: ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         guard let faceAnchor = anchor as? ARFaceAnchor else { return }
+        calibration.calibrate(to: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y)
+    }
+}
+
+extension ViewController: CalibrationDelegate {
+    func calibrationStateDidChange() {
         DispatchQueue.main.async {
-            self.upLeftView.isHidden = !(faceAnchor.lookAtPoint.x < 0 && faceAnchor.lookAtPoint.y > 0)
-            self.upRightView.isHidden = !(faceAnchor.lookAtPoint.x > 0 && faceAnchor.lookAtPoint.y > 0)
-            self.downLeftView.isHidden = !(faceAnchor.lookAtPoint.x < 0 && faceAnchor.lookAtPoint.y < 0)
-            self.downRightView.isHidden = !(faceAnchor.lookAtPoint.x > 0 && faceAnchor.lookAtPoint.y < 0)
+            self.upView.isHidden = self.calibration.state != .up
+            self.rightView.isHidden = self.calibration.state != .right
+            self.downView.isHidden = self.calibration.state != .down
+            self.leftView.isHidden = self.calibration.state != .left
         }
     }
 }
