@@ -9,6 +9,8 @@
 import Foundation
 
 struct EyePosition {
+    typealias Trend = (x: HumanReadableXPosition, y: HumanReadableYPosition)
+    
     enum HumanReadableXPosition {
         case left, right, unknown
     }
@@ -25,7 +27,7 @@ struct EyePosition {
         self.y = y
     }
     
-    var trend: (x: HumanReadableXPosition, y: HumanReadableYPosition) {
+    var trend: Trend {
         return (x: x < 0 ? .left : .right, y: y < 0 ? .down : .up)
     }
     

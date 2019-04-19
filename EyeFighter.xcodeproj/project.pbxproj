@@ -14,6 +14,10 @@
 		0B1DFF072253605300329B7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B1DFF052253605300329B7F /* LaunchScreen.storyboard */; };
 		0B1DFF122253605300329B7F /* EyeFighterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1DFF112253605300329B7F /* EyeFighterTests.swift */; };
 		0B1DFF1D2253605300329B7F /* EyeFighterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1DFF1C2253605300329B7F /* EyeFighterUITests.swift */; };
+		0B4C5C882269F7480054722C /* BluetoothWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C872269F7480054722C /* BluetoothWorker.swift */; };
+		0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */; };
+		0B4C5C8C226A03E20054722C /* ActivateLedCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */; };
+		0B4C5C8D226A03E20054722C /* ArduinoCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C862269F73B0054722C /* ArduinoCommand.swift */; };
 		0BD08100225C9FBD0089209A /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD080FF225C9FBD0089209A /* Calibration.swift */; };
 		0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE11340225CC50A002A3429 /* EyePosition.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +53,10 @@
 		0B1DFF182253605300329B7F /* EyeFighterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EyeFighterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1DFF1C2253605300329B7F /* EyeFighterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeFighterUITests.swift; sourceTree = "<group>"; };
 		0B1DFF1E2253605300329B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateLedCommand.swift; sourceTree = "<group>"; };
+		0B4C5C862269F73B0054722C /* ArduinoCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoCommand.swift; sourceTree = "<group>"; };
+		0B4C5C872269F7480054722C /* BluetoothWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothWorker.swift; sourceTree = "<group>"; };
+		0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevice.swift; sourceTree = "<group>"; };
 		0BD080FF225C9FBD0089209A /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
 		0BE11340225CC50A002A3429 /* EyePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyePosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,9 +109,10 @@
 		0B1DFEFB2253605000329B7F /* EyeFighter */ = {
 			isa = PBXGroup;
 			children = (
+				0B4C5C892269F7540054722C /* Calibration */,
+				0B4C5C842269F7330054722C /* Bluetooth */,
+				0B4C5C832269F72C0054722C /* Commands */,
 				0B1DFEFC2253605000329B7F /* AppDelegate.swift */,
-				0BE11340225CC50A002A3429 /* EyePosition.swift */,
-				0BD080FF225C9FBD0089209A /* Calibration.swift */,
 				0B1DFEFE2253605000329B7F /* ViewController.swift */,
 				0B1DFF002253605000329B7F /* Main.storyboard */,
 				0B1DFF032253605300329B7F /* Assets.xcassets */,
@@ -129,6 +138,33 @@
 				0B1DFF1E2253605300329B7F /* Info.plist */,
 			);
 			path = EyeFighterUITests;
+			sourceTree = "<group>";
+		};
+		0B4C5C832269F72C0054722C /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				0B4C5C862269F73B0054722C /* ArduinoCommand.swift */,
+				0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		0B4C5C842269F7330054722C /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				0B4C5C872269F7480054722C /* BluetoothWorker.swift */,
+				0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		0B4C5C892269F7540054722C /* Calibration */ = {
+			isa = PBXGroup;
+			children = (
+				0BE11340225CC50A002A3429 /* EyePosition.swift */,
+				0BD080FF225C9FBD0089209A /* Calibration.swift */,
+			);
+			path = Calibration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,7 +301,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B4C5C8D226A03E20054722C /* ArduinoCommand.swift in Sources */,
+				0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */,
+				0B4C5C882269F7480054722C /* BluetoothWorker.swift in Sources */,
 				0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */,
+				0B4C5C8C226A03E20054722C /* ActivateLedCommand.swift in Sources */,
 				0B1DFEFF2253605000329B7F /* ViewController.swift in Sources */,
 				0BD08100225C9FBD0089209A /* Calibration.swift in Sources */,
 				0B1DFEFD2253605000329B7F /* AppDelegate.swift in Sources */,

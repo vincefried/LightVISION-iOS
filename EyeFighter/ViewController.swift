@@ -18,12 +18,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var downView: UIView!
     @IBOutlet weak var leftView: UIView!
     @IBOutlet weak var centerView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var connectingLabel: UILabel!
     
     var faceAnchor: ARFaceAnchor?
     
     var point = UIView()
-    
+        
     let calibration = Calibration()
+    
+    var currentTrend: EyePosition.Trend? {
+        didSet {
+            eyeTrendChanged()
+        }
+    }
+    
+    let bluetoothWorker = BluetoothWorker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +42,12 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPress)))
 
         guard ARFaceTrackingConfiguration.isSupported else { fatalError() }
-        sceneView.delegate = self
         
+        sceneView.delegate = self
         calibration.delegate = self
+        bluetoothWorker.delegate = self
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in self?.bluetoothWorker.scanAndConnect() }
     }
     
     @objc private func didTap() {
@@ -65,6 +78,20 @@ class ViewController: UIViewController {
         let configuration = ARFaceTrackingConfiguration()
         sceneView.session.run(configuration)
     }
+    
+    private func eyeTrendChanged() {
+        guard let faceAnchor = faceAnchor,
+            let position = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y) else { return }
+        let synthesizer = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: position.humanReadablePosition)
+        utterance.voice = AVSpeechSynthesisVoice(language: "de-DE")
+        utterance.rate = 0.65
+        synthesizer.speak(utterance)
+        
+        guard let currentTrend = currentTrend else { return }
+        let command = ActivateLedCommand(currentTrend.x == .right ? .on : .off)
+        bluetoothWorker.send(command)
+    }
 }
 
 extension ViewController: ARSCNViewDelegate {
@@ -82,6 +109,14 @@ extension ViewController: ARSCNViewDelegate {
         
         guard let faceAnchor = faceAnchor,
             let position = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y) else { return }
+        
+        if let currentTrend = currentTrend {
+            if position.trend != currentTrend {
+                self.currentTrend = position.trend
+            }
+        } else {
+            currentTrend = position.trend
+        }
         
         DispatchQueue.main.async {
             if !self.view.subviews.contains(self.point) {
@@ -133,5 +168,31 @@ extension ViewController: CalibrationDelegate {
         synthesizer.speak(utterance)
         
         print("Saved point \(value) for \(state.rawValue)")
+    }
+}
+
+extension ViewController: BluetoothWorkerDelegate {
+    func changedConnectionState(_ state: ConnectionState) {
+        switch state {
+        case .connecting:
+            activityIndicator.startAnimating()
+            connectingLabel.text = "Connecting..."
+        case .connected:
+            activityIndicator.stopAnimating()
+            connectingLabel.text = "Connected"
+        case .disconnected:
+            activityIndicator.stopAnimating()
+            connectingLabel.text = "No connection"
+        }
+        
+        connectingLabel.textColor = state == .connected ? .green : .black
+    }
+    
+    func connectedDevice(_ device: BluetoothDevice) {
+        print("Successfully connected to \(device.name)")
+    }
+    
+    func disconnectedDevice(_ device: BluetoothDevice) {
+        print("Disconnected \(device.name)")
     }
 }
