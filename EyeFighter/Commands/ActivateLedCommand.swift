@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ActivateLedCommand: ArduinoCommand {
+struct ActivateLedCommand: BluetoothCommand {
     var c: Command = .activate
     
     enum LedState: String, Codable {

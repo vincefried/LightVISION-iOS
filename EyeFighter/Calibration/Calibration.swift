@@ -32,14 +32,14 @@ enum CalibrationState: String {
 }
 
 protocol CalibrationDelegate {
-    func calibrationStateDidChange()
+    func calibrationStateDidChange(to state: CalibrationState)
     func calibrationDidChange(for state: CalibrationState, value: Float)
 }
 
 class Calibration {
     var state: CalibrationState = .initial {
         didSet {
-            delegate?.calibrationStateDidChange()
+            delegate?.calibrationStateDidChange(to: state)
         }
     }
     
@@ -113,6 +113,25 @@ class Calibration {
         minY = nil
     }
     
+    static func getCalibrationBorder(for state: CalibrationState) -> (x: Int, y: Int) {
+        switch state {
+        case .center:
+            return (x: 128, y: 128)
+        case .right:
+            return (x: 156, y: 128)
+        case .down:
+            return (x: 128, y: 192)
+        case .left:
+            return (x: 100, y: 128)
+        case .up:
+            return (x: 128, y: 64)
+        case .initial:
+            return (x: 128, y: 128)
+        case .done:
+            return (x: 128, y: 128)
+        }
+    }
+    
     func getPosition(x: Float, y: Float) -> EyePosition? {
         guard let maxX = maxX,
             let minX = minX,
@@ -121,11 +140,17 @@ class Calibration {
             let centerX = centerX,
             let centerY = centerY else { return nil }
         
-        let xBorder = x < centerX ? minX : maxX
-        let yBorder = y < centerY ? minY : maxY
-        let xResult = x < centerX ? max((x / (xBorder * -1)), -1.0) : min((x / xBorder), 1.0)
-        let yResult = y < centerY ? max((y / (yBorder * -1)), -1.0) : min((y / yBorder), 1.0)
+        let xBorder: Float = x < centerX ? minX : maxX
+        let yBorder: Float = y < centerY ? minY : maxY
         
-        return EyePosition(x: xResult, y: yResult)
+        let xFactor: Float = (Float(Calibration.getCalibrationBorder(for: .right).x) - Float(Calibration.getCalibrationBorder(for: .center).x))
+            / abs(xBorder)
+        let yFactor: Float = (Float(Calibration.getCalibrationBorder(for: .up).y) - Float(Calibration.getCalibrationBorder(for: .center).y))
+            / abs(yBorder)
+        
+        let newX: Float = xFactor * x + Float(Calibration.getCalibrationBorder(for: .center).x)
+        let newY: Float = yFactor * y + Float(Calibration.getCalibrationBorder(for: .center).y)
+        
+        return EyePosition(x: Int(newX), y: Int(newY))
     }
 }

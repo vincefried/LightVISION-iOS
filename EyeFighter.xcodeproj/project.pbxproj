@@ -17,7 +17,8 @@
 		0B4C5C882269F7480054722C /* BluetoothWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C872269F7480054722C /* BluetoothWorker.swift */; };
 		0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */; };
 		0B4C5C8C226A03E20054722C /* ActivateLedCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */; };
-		0B4C5C8D226A03E20054722C /* ArduinoCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C862269F73B0054722C /* ArduinoCommand.swift */; };
+		0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C862269F73B0054722C /* BluetoothCommand.swift */; };
+		0B6400C7228AA3EA00ED58D4 /* ControlXYCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */; };
 		0BD08100225C9FBD0089209A /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD080FF225C9FBD0089209A /* Calibration.swift */; };
 		0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE11340225CC50A002A3429 /* EyePosition.swift */; };
 /* End PBXBuildFile section */
@@ -54,9 +55,10 @@
 		0B1DFF1C2253605300329B7F /* EyeFighterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeFighterUITests.swift; sourceTree = "<group>"; };
 		0B1DFF1E2253605300329B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateLedCommand.swift; sourceTree = "<group>"; };
-		0B4C5C862269F73B0054722C /* ArduinoCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoCommand.swift; sourceTree = "<group>"; };
+		0B4C5C862269F73B0054722C /* BluetoothCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCommand.swift; sourceTree = "<group>"; };
 		0B4C5C872269F7480054722C /* BluetoothWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothWorker.swift; sourceTree = "<group>"; };
 		0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevice.swift; sourceTree = "<group>"; };
+		0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlXYCommand.swift; sourceTree = "<group>"; };
 		0BD080FF225C9FBD0089209A /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
 		0BE11340225CC50A002A3429 /* EyePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyePosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,8 +145,9 @@
 		0B4C5C832269F72C0054722C /* Commands */ = {
 			isa = PBXGroup;
 			children = (
-				0B4C5C862269F73B0054722C /* ArduinoCommand.swift */,
+				0B4C5C862269F73B0054722C /* BluetoothCommand.swift */,
 				0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */,
+				0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -301,7 +304,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B4C5C8D226A03E20054722C /* ArduinoCommand.swift in Sources */,
+				0B6400C7228AA3EA00ED58D4 /* ControlXYCommand.swift in Sources */,
+				0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */,
 				0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */,
 				0B4C5C882269F7480054722C /* BluetoothWorker.swift in Sources */,
 				0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */,

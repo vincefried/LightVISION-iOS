@@ -10,14 +10,15 @@ import Foundation
 
 enum Command: String, Codable {
     case activate = "a"
+    case xyDirection = "xy"
 }
 
-protocol ArduinoCommand: Codable {
+protocol BluetoothCommand: Codable {
     var c: Command { get }
     var jsonData: Data? { get }
 }
 
-extension ArduinoCommand {
+extension BluetoothCommand {
     var jsonData: Data? {
         do {
             let data = try JSONEncoder().encode(self)

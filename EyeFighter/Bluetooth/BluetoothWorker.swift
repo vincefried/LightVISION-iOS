@@ -100,7 +100,7 @@ class BluetoothWorker: NSObject {
         }
     }
     
-    func send(_ command: ArduinoCommand) {
+    func send(_ command: BluetoothCommand) {
         guard let data = command.jsonData, let characteristic = characteristic else { return }
         connectedPeripheral?.writeValue(data, for: characteristic, type: .withoutResponse)
     }
