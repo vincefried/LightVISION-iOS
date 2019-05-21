@@ -118,11 +118,11 @@ class Calibration {
         case .center:
             return (x: 128, y: 128)
         case .right:
-            return (x: 156, y: 128)
+            return (x: 100, y: 128)
         case .down:
             return (x: 128, y: 192)
         case .left:
-            return (x: 100, y: 128)
+            return (x: 156, y: 128)
         case .up:
             return (x: 128, y: 64)
         case .initial:

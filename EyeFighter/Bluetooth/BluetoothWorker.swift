@@ -66,7 +66,7 @@ class BluetoothWorker: NSObject {
         manager.delegate = self
     }
     
-    func scanAndConnect(with device: BluetoothDevice = .laservision, delay: TimeInterval = 0.5) {
+    func scanAndConnect(with device: BluetoothDevice = .laservision, delay: TimeInterval = 1.0) {
         scan()
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in self?.connect() }
     }
