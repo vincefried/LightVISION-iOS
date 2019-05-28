@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var centerView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var connectingLabel: UILabel!
+    @IBOutlet weak var refreshButton: UIButton!
     
     var faceAnchor: ARFaceAnchor?
     
@@ -27,6 +28,7 @@ class ViewController: UIViewController {
     let calibration = Calibration()
     
     let bluetoothWorker = BluetoothWorker()
+    let settingsWorker = SettingsWorker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +66,19 @@ class ViewController: UIViewController {
         
         let configuration = ARFaceTrackingConfiguration()
         sceneView.session.run(configuration)
+        
+        sceneView.isHidden = !settingsWorker.isDebugModeEnabled
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let navigationController = segue.destination as? UINavigationController,
+            let settingsViewController = navigationController.viewControllers.first as? SettingsViewController else { return }
+        let settingsViewModel = SettingsViewModel(settingsWorker: settingsWorker, bluetoothWorker: bluetoothWorker)
+        settingsViewController.viewModel = settingsViewModel
+    }
+    
+    @IBAction func tappedRefreshButton(_ sender: UIButton) {
+        bluetoothWorker.connect()
     }
 }
 
@@ -122,6 +137,22 @@ extension ViewController: BluetoothWorkerDelegate {
         case .disconnected:
             activityIndicator.stopAnimating()
             connectingLabel.text = "No connection"
+        case .deviceNotFound:
+            activityIndicator.startAnimating()
+            connectingLabel.text = "Device not found"
+        }
+        
+        if state == .deviceNotFound {
+            self.refreshButton.alpha = 0.0
+        }
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            if state == .deviceNotFound {
+                self.refreshButton.isHidden = false
+            }
+            self.refreshButton.alpha = state == .deviceNotFound ? 1.0 : 0.0
+        }) { _ in
+            self.refreshButton.isHidden = state != .deviceNotFound
         }
         
         connectingLabel.textColor = state == .connected ? .green : .black

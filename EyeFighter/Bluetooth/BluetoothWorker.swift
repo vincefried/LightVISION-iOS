@@ -10,7 +10,7 @@ import Foundation
 import CoreBluetooth
 
 enum ConnectionState {
-    case connecting, connected, disconnected
+    case connecting, connected, disconnected, deviceNotFound
 }
 
 protocol BluetoothWorkerDelegate {
@@ -80,6 +80,7 @@ class BluetoothWorker: NSObject {
     func connect(with device: BluetoothDevice = .laservision) {
         guard let peripheral = peripherals.first(where: { $0.name == device.name }) else {
             print("No device found with given name: \(device.name)")
+            connectionState = .deviceNotFound
             return
         }
         

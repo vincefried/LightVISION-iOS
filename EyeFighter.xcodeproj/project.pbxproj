@@ -20,6 +20,9 @@
 		0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C862269F73B0054722C /* BluetoothCommand.swift */; };
 		0B6400C7228AA3EA00ED58D4 /* ControlXYCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */; };
 		0BD08100225C9FBD0089209A /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD080FF225C9FBD0089209A /* Calibration.swift */; };
+		0BD14448229D299B00A60FC1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD14447229D299B00A60FC1 /* SettingsViewController.swift */; };
+		0BD1444B229D2E3B00A60FC1 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1444A229D2E3B00A60FC1 /* SettingsWorker.swift */; };
+		0BD1444F229D2FA900A60FC1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */; };
 		0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE11340225CC50A002A3429 /* EyePosition.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +63,9 @@
 		0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevice.swift; sourceTree = "<group>"; };
 		0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlXYCommand.swift; sourceTree = "<group>"; };
 		0BD080FF225C9FBD0089209A /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
+		0BD14447229D299B00A60FC1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0BD1444A229D2E3B00A60FC1 /* SettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
+		0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0BE11340225CC50A002A3429 /* EyePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyePosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,11 +117,14 @@
 		0B1DFEFB2253605000329B7F /* EyeFighter */ = {
 			isa = PBXGroup;
 			children = (
+				0BD1444D229D2F9D00A60FC1 /* ViewModel */,
+				0BD14449229D2E3100A60FC1 /* Settings */,
 				0B4C5C892269F7540054722C /* Calibration */,
 				0B4C5C842269F7330054722C /* Bluetooth */,
 				0B4C5C832269F72C0054722C /* Commands */,
 				0B1DFEFC2253605000329B7F /* AppDelegate.swift */,
 				0B1DFEFE2253605000329B7F /* ViewController.swift */,
+				0BD14447229D299B00A60FC1 /* SettingsViewController.swift */,
 				0B1DFF002253605000329B7F /* Main.storyboard */,
 				0B1DFF032253605300329B7F /* Assets.xcassets */,
 				0B1DFF052253605300329B7F /* LaunchScreen.storyboard */,
@@ -168,6 +177,22 @@
 				0BD080FF225C9FBD0089209A /* Calibration.swift */,
 			);
 			path = Calibration;
+			sourceTree = "<group>";
+		};
+		0BD14449229D2E3100A60FC1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0BD1444A229D2E3B00A60FC1 /* SettingsWorker.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		0BD1444D229D2F9D00A60FC1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,14 +330,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B6400C7228AA3EA00ED58D4 /* ControlXYCommand.swift in Sources */,
+				0BD1444B229D2E3B00A60FC1 /* SettingsWorker.swift in Sources */,
 				0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */,
 				0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */,
+				0BD14448229D299B00A60FC1 /* SettingsViewController.swift in Sources */,
 				0B4C5C882269F7480054722C /* BluetoothWorker.swift in Sources */,
 				0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */,
 				0B4C5C8C226A03E20054722C /* ActivateLedCommand.swift in Sources */,
 				0B1DFEFF2253605000329B7F /* ViewController.swift in Sources */,
 				0BD08100225C9FBD0089209A /* Calibration.swift in Sources */,
 				0B1DFEFD2253605000329B7F /* AppDelegate.swift in Sources */,
+				0BD1444F229D2FA900A60FC1 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
