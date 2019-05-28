@@ -155,7 +155,7 @@ extension ViewController: BluetoothWorkerDelegate {
             self.refreshButton.isHidden = state != .deviceNotFound
         }
         
-        connectingLabel.textColor = state == .connected ? .green : .black
+        connectingLabel.textColor = state == .connected ? .green : .white
     }
     
     func connectedDevice(_ device: BluetoothDevice) {

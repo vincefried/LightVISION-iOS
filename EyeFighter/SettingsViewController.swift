@@ -14,11 +14,18 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var debugSwitch: UISwitch!
     @IBOutlet weak var connectedWithLabel: UILabel!
+    @IBOutlet weak var visualEffectsView: UIVisualEffectView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initCI()
         updateUI()
+    }
+    
+    private func initCI() {
+        visualEffectsView.layer.cornerRadius = 10.0
+        visualEffectsView.layer.masksToBounds = true
     }
     
     private func updateUI() {
