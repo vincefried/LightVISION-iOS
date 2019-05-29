@@ -111,6 +111,8 @@ class Calibration {
         maxY = nil
         minX = nil
         minY = nil
+        centerX = nil
+        centerY = nil
     }
     
     static func getCalibrationBorder(for state: CalibrationState) -> (x: Int, y: Int) {
@@ -148,8 +150,8 @@ class Calibration {
         let yFactor: Float = (Float(Calibration.getCalibrationBorder(for: .up).y) - Float(Calibration.getCalibrationBorder(for: .center).y))
             / abs(yBorder)
         
-        let newX: Float = xFactor * x + Float(Calibration.getCalibrationBorder(for: .center).x)
-        let newY: Float = yFactor * y + Float(Calibration.getCalibrationBorder(for: .center).y)
+        let newX: Float = max(min(xFactor * x + Float(Calibration.getCalibrationBorder(for: .center).x), 255), 0)
+        let newY: Float = max(min(yFactor * y + Float(Calibration.getCalibrationBorder(for: .center).y), 255), 0)
         
         return EyePosition(x: Int(newX), y: Int(newY))
     }
