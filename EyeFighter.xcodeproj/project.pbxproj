@@ -23,6 +23,8 @@
 		0BD14448229D299B00A60FC1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD14447229D299B00A60FC1 /* SettingsViewController.swift */; };
 		0BD1444B229D2E3B00A60FC1 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1444A229D2E3B00A60FC1 /* SettingsWorker.swift */; };
 		0BD1444F229D2FA900A60FC1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */; };
+		0BD1445B229E77ED00A60FC1 /* Hauser Condensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BD1445A229E77BF00A60FC1 /* Hauser Condensed.ttf */; };
+		0BD1445C229E77ED00A60FC1 /* Hauser.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BD14459229E77BF00A60FC1 /* Hauser.ttf */; };
 		0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE11340225CC50A002A3429 /* EyePosition.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,8 @@
 		0BD14447229D299B00A60FC1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0BD1444A229D2E3B00A60FC1 /* SettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
 		0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0BD14459229E77BF00A60FC1 /* Hauser.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hauser.ttf; sourceTree = "<group>"; };
+		0BD1445A229E77BF00A60FC1 /* Hauser Condensed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hauser Condensed.ttf"; sourceTree = "<group>"; };
 		0BE11340225CC50A002A3429 /* EyePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyePosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +121,7 @@
 		0B1DFEFB2253605000329B7F /* EyeFighter */ = {
 			isa = PBXGroup;
 			children = (
+				0BD14450229E6EFF00A60FC1 /* Fonts */,
 				0BD1444D229D2F9D00A60FC1 /* ViewModel */,
 				0BD14449229D2E3100A60FC1 /* Settings */,
 				0B4C5C892269F7540054722C /* Calibration */,
@@ -193,6 +198,15 @@
 				0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0BD14450229E6EFF00A60FC1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0BD1445A229E77BF00A60FC1 /* Hauser Condensed.ttf */,
+				0BD14459229E77BF00A60FC1 /* Hauser.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,9 +316,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BD1445C229E77ED00A60FC1 /* Hauser.ttf in Resources */,
 				0B1DFF072253605300329B7F /* LaunchScreen.storyboard in Resources */,
 				0B1DFF042253605300329B7F /* Assets.xcassets in Resources */,
 				0B1DFF022253605000329B7F /* Main.storyboard in Resources */,
+				0BD1445B229E77ED00A60FC1 /* Hauser Condensed.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

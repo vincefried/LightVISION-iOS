@@ -7,11 +7,14 @@
 //
 
 import UIKit
+#if !targetEnvironment(simulator)
 import ARKit
+#endif
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var sceneView: ARSCNView!
+    // We use UIView instead of ARSCNView because ARSCNView doesn't exist on iOS Simulator
+    @IBOutlet weak var sceneView: UIView!
     @IBOutlet weak var upView: UIView!
     @IBOutlet weak var rightView: UIView!
     @IBOutlet weak var downView: UIView!
@@ -20,8 +23,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var connectingLabel: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
+    #if !targetEnvironment(simulator)
     var faceAnchor: ARFaceAnchor?
+    #endif
     
     var point = UIView()
         
@@ -36,9 +42,15 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap)))
         view.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPress)))
 
-        guard ARFaceTrackingConfiguration.isSupported else { fatalError() }
+        visualEffectView.layer.cornerRadius = 10
+        visualEffectView.layer.masksToBounds = true
         
+        #if !targetEnvironment(simulator)
+        guard ARFaceTrackingConfiguration.isSupported else { fatalError() }
+        guard let sceneView = sceneView as? ARSCNView else { return }
         sceneView.delegate = self
+        #endif
+        
         calibration.delegate = self
         bluetoothWorker.delegate = self
         
@@ -46,7 +58,13 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTap() {
-        guard let faceAnchor = faceAnchor else { return }
+        #if targetEnvironment(simulator)
+        if calibration.state != .done {
+            calibration.calibrate(to: 0, y: 0)
+            calibration.next()
+        }
+        #else
+        guard let faceAnchor = faceAnchor, bluetoothWorker.isConnected else { return }
         if calibration.state == .done {
             guard let position = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y) else { return }
             print("\(position.x) \(position.y)")
@@ -54,6 +72,7 @@ class ViewController: UIViewController {
             calibration.calibrate(to: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y)
             calibration.next()
         }
+        #endif
     }
     
     @objc private func didLongPress() {
@@ -64,8 +83,12 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        #if !targetEnvironment(simulator)
         let configuration = ARFaceTrackingConfiguration()
+        
+        guard let sceneView = sceneView as? ARSCNView else { return }
         sceneView.session.run(configuration)
+        #endif
         
         sceneView.isHidden = !settingsWorker.isDebugModeEnabled
     }
@@ -82,9 +105,11 @@ class ViewController: UIViewController {
     }
 }
 
+#if !targetEnvironment(simulator)
 extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        guard let device = sceneView.device else { return nil }
+        guard let sceneView = sceneView as? ARSCNView,
+            let device = sceneView.device else { return nil }
         let faceGeometry = ARSCNFaceGeometry(device: device)
         let node = SCNNode(geometry: faceGeometry)
         node.geometry?.firstMaterial?.fillMode = .lines
@@ -104,6 +129,7 @@ extension ViewController: ARSCNViewDelegate {
         bluetoothWorker.send(command)
     }
 }
+#endif
 
 extension ViewController: CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState) {

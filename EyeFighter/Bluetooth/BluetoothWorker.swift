@@ -35,6 +35,10 @@ class BluetoothWorker: NSObject {
         }
     }
     
+    var isConnected: Bool {
+        return connectionState == .connected
+    }
+    
     private var _connectedPeripheral: CBPeripheral?
     var connectedPeripheral: CBPeripheral? {
         set {
