@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var connectingLabel: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var setupView: UIView!
     
     #if !targetEnvironment(simulator)
     var faceAnchor: ARFaceAnchor?
@@ -51,7 +52,6 @@ class ViewController: UIViewController {
         sceneView.delegate = self
         #endif
         
-        calibration.delegate = self
         bluetoothWorker.delegate = self
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in self?.bluetoothWorker.scanAndConnect() }
@@ -91,13 +91,23 @@ class ViewController: UIViewController {
         #endif
         
         sceneView.isHidden = !settingsWorker.isDebugModeEnabled
+        
+        if settingsWorker.isDebugModeEnabled {
+            calibration.delegate = self
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let navigationController = segue.destination as? UINavigationController,
-            let settingsViewController = navigationController.viewControllers.first as? SettingsViewController else { return }
-        let settingsViewModel = SettingsViewModel(settingsWorker: settingsWorker, bluetoothWorker: bluetoothWorker)
-        settingsViewController.viewModel = settingsViewModel
+        if let navigationController = segue.destination as? UINavigationController,
+            let settingsViewController = navigationController.viewControllers.first as? SettingsViewController {
+            let settingsViewModel = SettingsViewModel(settingsWorker: settingsWorker, bluetoothWorker: bluetoothWorker)
+            settingsViewController.viewModel = settingsViewModel
+        }
+        
+        if let setupViewController = segue.destination as? SetupViewController {
+            calibration.delegate = setupViewController
+            setupViewController.viewModel = SetupViewModel(calibrationState: calibration.state)
+        }
     }
     
     @IBAction func tappedRefreshButton(_ sender: UIButton) {
@@ -133,12 +143,14 @@ extension ViewController: ARSCNViewDelegate {
 
 extension ViewController: CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState) {
-        DispatchQueue.main.async {
-            self.upView.isHidden = state != .up && state != .initial
-            self.rightView.isHidden = state != .right && state != .initial
-            self.downView.isHidden = state != .down && state != .initial
-            self.leftView.isHidden = state != .left && state != .initial
-            self.centerView.isHidden = state != .center && state != .initial
+        if settingsWorker.isDebugModeEnabled {
+            DispatchQueue.main.async {
+                self.upView.isHidden = state != .up && state != .initial
+                self.rightView.isHidden = state != .right && state != .initial
+                self.downView.isHidden = state != .down && state != .initial
+                self.leftView.isHidden = state != .left && state != .initial
+                self.centerView.isHidden = state != .center && state != .initial
+            }
         }
         
         let border = Calibration.getCalibrationBorder(for: state)

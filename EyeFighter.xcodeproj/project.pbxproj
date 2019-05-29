@@ -25,6 +25,8 @@
 		0BD1444F229D2FA900A60FC1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */; };
 		0BD1445B229E77ED00A60FC1 /* Hauser Condensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BD1445A229E77BF00A60FC1 /* Hauser Condensed.ttf */; };
 		0BD1445C229E77ED00A60FC1 /* Hauser.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BD14459229E77BF00A60FC1 /* Hauser.ttf */; };
+		0BD1445E229E7AE100A60FC1 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1445D229E7AE100A60FC1 /* SetupViewController.swift */; };
+		0BD14460229E7E0E00A60FC1 /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1445F229E7E0E00A60FC1 /* SetupViewModel.swift */; };
 		0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE11340225CC50A002A3429 /* EyePosition.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +72,8 @@
 		0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0BD14459229E77BF00A60FC1 /* Hauser.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hauser.ttf; sourceTree = "<group>"; };
 		0BD1445A229E77BF00A60FC1 /* Hauser Condensed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hauser Condensed.ttf"; sourceTree = "<group>"; };
+		0BD1445D229E7AE100A60FC1 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		0BD1445F229E7E0E00A60FC1 /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
 		0BE11340225CC50A002A3429 /* EyePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyePosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +133,7 @@
 				0B4C5C832269F72C0054722C /* Commands */,
 				0B1DFEFC2253605000329B7F /* AppDelegate.swift */,
 				0B1DFEFE2253605000329B7F /* ViewController.swift */,
+				0BD1445D229E7AE100A60FC1 /* SetupViewController.swift */,
 				0BD14447229D299B00A60FC1 /* SettingsViewController.swift */,
 				0B1DFF002253605000329B7F /* Main.storyboard */,
 				0B1DFF032253605300329B7F /* Assets.xcassets */,
@@ -196,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */,
+				0BD1445F229E7E0E00A60FC1 /* SetupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 				0BD1444B229D2E3B00A60FC1 /* SettingsWorker.swift in Sources */,
 				0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */,
 				0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */,
+				0BD14460229E7E0E00A60FC1 /* SetupViewModel.swift in Sources */,
 				0BD14448229D299B00A60FC1 /* SettingsViewController.swift in Sources */,
 				0B4C5C882269F7480054722C /* BluetoothWorker.swift in Sources */,
 				0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */,
@@ -356,6 +363,7 @@
 				0B1DFEFF2253605000329B7F /* ViewController.swift in Sources */,
 				0BD08100225C9FBD0089209A /* Calibration.swift in Sources */,
 				0B1DFEFD2253605000329B7F /* AppDelegate.swift in Sources */,
+				0BD1445E229E7AE100A60FC1 /* SetupViewController.swift in Sources */,
 				0BD1444F229D2FA900A60FC1 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
