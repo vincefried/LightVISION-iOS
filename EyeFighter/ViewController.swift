@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         
         if let setupViewController = segue.destination as? SetupViewController {
             calibration.delegate = setupViewController
-            setupViewController.viewModel = SetupViewModel(calibrationState: calibration.state)
+            setupViewController.viewModel = SetupViewModel(calibrationState: calibration.state, bluetoothWorker: bluetoothWorker)
         }
     }
     
@@ -151,11 +151,11 @@ extension ViewController: CalibrationDelegate {
                 self.leftView.isHidden = state != .left && state != .initial
                 self.centerView.isHidden = state != .center && state != .initial
             }
+            
+            let border = Calibration.getCalibrationBorder(for: state)
+            let command = ControlXYCommand(x: border.x, y: border.y)
+            bluetoothWorker.send(command)
         }
-        
-        let border = Calibration.getCalibrationBorder(for: state)
-        let command = ControlXYCommand(x: border.x, y: border.y)
-        bluetoothWorker.send(command)
     }
     
     func calibrationDidChange(for state: CalibrationState, value: Float) {

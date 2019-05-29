@@ -19,7 +19,10 @@ class SetupViewModel {
     
     var delegate: SetupViewModelDelegate?
     
-    init(calibrationState: CalibrationState) {
+    let bluetoothWorker: BluetoothWorker
+    
+    init(calibrationState: CalibrationState, bluetoothWorker: BluetoothWorker) {
+        self.bluetoothWorker = bluetoothWorker
         handleStateChange(calibrationState: calibrationState)
     }
     
@@ -49,6 +52,10 @@ class SetupViewModel {
         }
         
         isDescriptionLabelHidden = calibrationState == .done
+        
+        let border = Calibration.getCalibrationBorder(for: calibrationState)
+        let command = ControlXYCommand(x: border.x, y: border.y)
+        bluetoothWorker.send(command)
         
         delegate?.updateUINeeded()
     }
