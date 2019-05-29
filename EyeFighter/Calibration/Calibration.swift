@@ -116,22 +116,24 @@ class Calibration {
     }
     
     static func getCalibrationBorder(for state: CalibrationState) -> (x: Int, y: Int) {
+        var border = (x: 0, y: 0)
         switch state {
         case .center:
-            return (x: 128, y: 128)
+            border = (x: 128, y: 128)
         case .right:
-            return (x: 76, y: 128)
+            border = (x: 76, y: 128)
         case .down:
-            return (x: 128, y: 180)
+            border = (x: 128, y: 180)
         case .left:
-            return (x: 180, y: 128)
+            border = (x: 180, y: 128)
         case .up:
-            return (x: 128, y: 76)
+            border = (x: 128, y: 76)
         case .initial:
-            return (x: 128, y: 128)
+            border = (x: 128, y: 128)
         case .done:
-            return (x: 128, y: 128)
+            border = (x: 128, y: 128)
         }
+        return (x: 255 - border.x, y: 255 - border.y)
     }
     
     func getPosition(x: Float, y: Float) -> EyePosition? {
