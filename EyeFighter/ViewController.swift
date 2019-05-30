@@ -37,11 +37,20 @@ class ViewController: UIViewController {
         visualEffectView.layer.cornerRadius = 10
         visualEffectView.layer.masksToBounds = true
         
-        guard ARFaceTrackingConfiguration.isSupported else { fatalError("Face ID is not available on this device") }
+        setupARView()
         
+        calibration.addObserver(self, delegate: self)
         bluetoothWorker.delegate = self
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in self?.bluetoothWorker.scanAndConnect() }
+    }
+    
+    private func setupARView() {
+        guard ARFaceTrackingConfiguration.isSupported else { fatalError("Face ID is not available on this device") }
+
+        arrow = Arrow()
+        guard let arrow = arrow else { return }
+        sceneView.scene.rootNode.addChildNode(arrow)
     }
     
     private func startARView() {
@@ -56,7 +65,7 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTap() {
-        guard let faceAnchor = faceAnchor, bluetoothWorker.isConnected else { return }
+        guard let faceAnchor = faceAnchor/*, bluetoothWorker.isConnected*/ else { return }
         
         if calibration.state == .done {
             guard let position = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y) else { return }
@@ -74,17 +83,11 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         startARView()
-        
-        if settingsWorker.isDebugModeEnabled {
-            calibration.delegate = self
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         pauseARView()
     }
     
@@ -96,7 +99,7 @@ class ViewController: UIViewController {
         }
         
         if let setupViewController = segue.destination as? SetupViewController {
-            calibration.delegate = setupViewController
+            calibration.addObserver(setupViewController, delegate: setupViewController)
             setupViewController.viewModel = SetupViewModel(calibrationState: calibration.state, bluetoothWorker: bluetoothWorker)
         }
     }
@@ -120,10 +123,6 @@ extension ViewController: ARSCNViewDelegate {
         node.addChildNode(leftPupil)
         node.addChildNode(rightPupil)
         
-        arrow = Arrow()
-        guard let arrow = arrow else { return nil }
-        node.addChildNode(arrow)
-        
         return node
     }
     
@@ -137,8 +136,8 @@ extension ViewController: ARSCNViewDelegate {
             rightPupil.update(transform: faceAnchor.rightEyeTransform)
         }
         
-        if let arrow = arrow {
-            arrow.update(position: node.position)
+        if let arrow = arrow, let camera = sceneView.pointOfView {
+            arrow.update(position: node.position, camera: camera)
         }
         
         if let faceGeometry = node.geometry as? ARSCNFaceGeometry {
@@ -156,11 +155,20 @@ extension ViewController: ARSCNViewDelegate {
 
 extension ViewController: CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState) {
-        if settingsWorker.isDebugModeEnabled {
-            let border = Calibration.getCalibrationBorder(for: state)
-            let command = ControlXYCommand(x: border.x, y: border.y)
-            bluetoothWorker.send(command)
+        switch state {
+        case .right:
+            arrow?.rotation = SCNQuaternion(90, 0, 0, 0)
+        case .down:
+            arrow?.rotation = SCNQuaternion(180, 0, 0, 0)
+        case .left:
+            arrow?.rotation = SCNQuaternion(270, 0, 0, 0)
+        case .up:
+            arrow?.rotation = SCNQuaternion(180, 0, 0, 0)
+        default:
+            break
         }
+        
+        arrow?.isHidden = state == .initial || state == .center || state == .done
     }
     
     func calibrationDidChange(for state: CalibrationState, value: Float) {

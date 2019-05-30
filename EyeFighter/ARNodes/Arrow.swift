@@ -24,8 +24,8 @@ class Arrow: SCNNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("\(#function) has not been implemented")
     }
-    
-    func update(position: SCNVector3) {
+
+    func update(position: SCNVector3, camera: SCNNode) {
         self.position = position
     }
 }

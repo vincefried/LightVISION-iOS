@@ -36,49 +36,47 @@ protocol CalibrationDelegate {
     func calibrationDidChange(for state: CalibrationState, value: Float)
 }
 
-class Calibration {
+class Calibration: Observable<CalibrationDelegate> {
     var state: CalibrationState = .initial {
         didSet {
-            delegate?.calibrationStateDidChange(to: state)
+            observers.forEach { $1.calibrationStateDidChange(to: state) }
         }
     }
-    
-    var delegate: CalibrationDelegate?
     
     var centerX: Float? {
         didSet {
             guard let value = centerX else { return }
-            delegate?.calibrationDidChange(for: state, value: value)
+            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
         }
     }
     var centerY: Float? {
         didSet {
             guard let value = centerY else { return }
-            delegate?.calibrationDidChange(for: state, value: value)
+            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
         }
     }
     var maxX: Float? {
         didSet {
             guard let value = maxX else { return }
-            delegate?.calibrationDidChange(for: state, value: value)
+            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
         }
     }
     var minX: Float? {
         didSet {
             guard let value = minX else { return }
-            delegate?.calibrationDidChange(for: state, value: value)
+            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
         }
     }
     var maxY: Float? {
         didSet {
             guard let value = maxY else { return }
-            delegate?.calibrationDidChange(for: state, value: value)
+            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
         }
     }
     var minY: Float? {
         didSet {
             guard let value = minY else { return }
-            delegate?.calibrationDidChange(for: state, value: value)
+            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
         }
     }
     
