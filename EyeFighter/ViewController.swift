@@ -15,11 +15,6 @@ class ViewController: UIViewController {
     
     // We use UIView instead of ARSCNView because ARSCNView doesn't exist on iOS Simulator
     @IBOutlet weak var sceneView: UIView!
-    @IBOutlet weak var upView: UIView!
-    @IBOutlet weak var rightView: UIView!
-    @IBOutlet weak var downView: UIView!
-    @IBOutlet weak var leftView: UIView!
-    @IBOutlet weak var centerView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var connectingLabel: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
@@ -28,6 +23,9 @@ class ViewController: UIViewController {
     
     #if !targetEnvironment(simulator)
     var faceAnchor: ARFaceAnchor?
+    var leftPupil: Pupil?
+    var rightPupil: Pupil?
+    var arrow: Arrow?
     #endif
     
     var point = UIView()
@@ -87,6 +85,7 @@ class ViewController: UIViewController {
         let configuration = ARFaceTrackingConfiguration()
         
         guard let sceneView = sceneView as? ARSCNView else { return }
+        sceneView.scene.background.contents = UIColor.black
         sceneView.session.run(configuration)
         #endif
         
@@ -113,6 +112,8 @@ class ViewController: UIViewController {
     @IBAction func tappedRefreshButton(_ sender: UIButton) {
         bluetoothWorker.connect()
     }
+    
+    private let serialQueue = DispatchQueue(label: "com.neoxapps.laservision.serialSceneKitQueue")
 }
 
 #if !targetEnvironment(simulator)
@@ -121,17 +122,42 @@ extension ViewController: ARSCNViewDelegate {
         guard let sceneView = sceneView as? ARSCNView,
             let device = sceneView.device else { return nil }
         let faceGeometry = ARSCNFaceGeometry(device: device)
+        faceGeometry?.firstMaterial?.fillMode = .lines
+        faceGeometry?.firstMaterial?.transparency = 0.05
         let node = SCNNode(geometry: faceGeometry)
-        node.geometry?.firstMaterial?.fillMode = .lines
-        node.geometry?.firstMaterial?.transparency = 0.0
+        
+        leftPupil = Pupil()
+        rightPupil = Pupil()
+        guard let leftPupil = leftPupil, let rightPupil = rightPupil else { return nil }
+        node.addChildNode(leftPupil)
+        node.addChildNode(rightPupil)
+        
+        arrow = Arrow()
+        guard let arrow = arrow else { return nil }
+        node.addChildNode(arrow)
+        
         return node
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         faceAnchor = anchor as? ARFaceAnchor
+
+        guard let faceAnchor = faceAnchor else { return }
         
-        guard let faceAnchor = faceAnchor,
-            let position = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y) else { return }
+        if let leftPupil = leftPupil, let rightPupil = rightPupil {
+            leftPupil.update(transform: faceAnchor.leftEyeTransform)
+            rightPupil.update(transform: faceAnchor.rightEyeTransform)
+        }
+        
+        if let arrow = arrow {
+            arrow.update(position: node.position)
+        }
+        
+        if let faceGeometry = node.geometry as? ARSCNFaceGeometry {
+            faceGeometry.update(from: faceAnchor.geometry)
+        }
+        
+        guard let position = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y) else { return }
         
         print("x: \(position.x) y: \(position.y)")
         
@@ -144,14 +170,6 @@ extension ViewController: ARSCNViewDelegate {
 extension ViewController: CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState) {
         if settingsWorker.isDebugModeEnabled {
-            DispatchQueue.main.async {
-                self.upView.isHidden = state != .up && state != .initial
-                self.rightView.isHidden = state != .right && state != .initial
-                self.downView.isHidden = state != .down && state != .initial
-                self.leftView.isHidden = state != .left && state != .initial
-                self.centerView.isHidden = state != .center && state != .initial
-            }
-            
             let border = Calibration.getCalibrationBorder(for: state)
             let command = ControlXYCommand(x: border.x, y: border.y)
             bluetoothWorker.send(command)

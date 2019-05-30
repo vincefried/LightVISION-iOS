@@ -18,6 +18,9 @@
 		0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */; };
 		0B4C5C8C226A03E20054722C /* ActivateLedCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */; };
 		0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C862269F73B0054722C /* BluetoothCommand.swift */; };
+		0B4D516322A0149B00C6E4D8 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B4D516222A0149B00C6E4D8 /* Models.scnassets */; };
+		0B4D516622A0154800C6E4D8 /* Pupil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4D516522A0154800C6E4D8 /* Pupil.swift */; };
+		0B4D516822A02B8100C6E4D8 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4D516722A02B8100C6E4D8 /* Arrow.swift */; };
 		0B6400C7228AA3EA00ED58D4 /* ControlXYCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */; };
 		0BD08100225C9FBD0089209A /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD080FF225C9FBD0089209A /* Calibration.swift */; };
 		0BD14448229D299B00A60FC1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD14447229D299B00A60FC1 /* SettingsViewController.swift */; };
@@ -65,6 +68,9 @@
 		0B4C5C862269F73B0054722C /* BluetoothCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCommand.swift; sourceTree = "<group>"; };
 		0B4C5C872269F7480054722C /* BluetoothWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothWorker.swift; sourceTree = "<group>"; };
 		0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevice.swift; sourceTree = "<group>"; };
+		0B4D516222A0149B00C6E4D8 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
+		0B4D516522A0154800C6E4D8 /* Pupil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pupil.swift; sourceTree = "<group>"; };
+		0B4D516722A02B8100C6E4D8 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
 		0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlXYCommand.swift; sourceTree = "<group>"; };
 		0BD080FF225C9FBD0089209A /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
 		0BD14447229D299B00A60FC1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 		0B1DFEFB2253605000329B7F /* EyeFighter */ = {
 			isa = PBXGroup;
 			children = (
+				0B4D516422A0151A00C6E4D8 /* ARNodes */,
 				0BD14450229E6EFF00A60FC1 /* Fonts */,
 				0BD1444D229D2F9D00A60FC1 /* ViewModel */,
 				0BD14449229D2E3100A60FC1 /* Settings */,
@@ -136,6 +143,7 @@
 				0BD1445D229E7AE100A60FC1 /* SetupViewController.swift */,
 				0BD14447229D299B00A60FC1 /* SettingsViewController.swift */,
 				0B1DFF002253605000329B7F /* Main.storyboard */,
+				0B4D516222A0149B00C6E4D8 /* Models.scnassets */,
 				0B1DFF032253605300329B7F /* Assets.xcassets */,
 				0B1DFF052253605300329B7F /* LaunchScreen.storyboard */,
 				0B1DFF082253605300329B7F /* Info.plist */,
@@ -187,6 +195,15 @@
 				0BD080FF225C9FBD0089209A /* Calibration.swift */,
 			);
 			path = Calibration;
+			sourceTree = "<group>";
+		};
+		0B4D516422A0151A00C6E4D8 /* ARNodes */ = {
+			isa = PBXGroup;
+			children = (
+				0B4D516522A0154800C6E4D8 /* Pupil.swift */,
+				0B4D516722A02B8100C6E4D8 /* Arrow.swift */,
+			);
+			path = ARNodes;
 			sourceTree = "<group>";
 		};
 		0BD14449229D2E3100A60FC1 /* Settings */ = {
@@ -325,6 +342,7 @@
 				0BD1445C229E77ED00A60FC1 /* Hauser.ttf in Resources */,
 				0B1DFF072253605300329B7F /* LaunchScreen.storyboard in Resources */,
 				0B1DFF042253605300329B7F /* Assets.xcassets in Resources */,
+				0B4D516322A0149B00C6E4D8 /* Models.scnassets in Resources */,
 				0B1DFF022253605000329B7F /* Main.storyboard in Resources */,
 				0BD1445B229E77ED00A60FC1 /* Hauser Condensed.ttf in Resources */,
 			);
@@ -352,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B6400C7228AA3EA00ED58D4 /* ControlXYCommand.swift in Sources */,
+				0B4D516822A02B8100C6E4D8 /* Arrow.swift in Sources */,
 				0BD1444B229D2E3B00A60FC1 /* SettingsWorker.swift in Sources */,
 				0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */,
 				0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */,
@@ -362,6 +381,7 @@
 				0B4C5C8C226A03E20054722C /* ActivateLedCommand.swift in Sources */,
 				0B1DFEFF2253605000329B7F /* ViewController.swift in Sources */,
 				0BD08100225C9FBD0089209A /* Calibration.swift in Sources */,
+				0B4D516622A0154800C6E4D8 /* Pupil.swift in Sources */,
 				0B1DFEFD2253605000329B7F /* AppDelegate.swift in Sources */,
 				0BD1445E229E7AE100A60FC1 /* SetupViewController.swift in Sources */,
 				0BD1444F229D2FA900A60FC1 /* SettingsViewModel.swift in Sources */,
