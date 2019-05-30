@@ -7,26 +7,21 @@
 //
 
 import UIKit
-#if !targetEnvironment(simulator)
 import ARKit
-#endif
 
 class ViewController: UIViewController {
     
-    // We use UIView instead of ARSCNView because ARSCNView doesn't exist on iOS Simulator
-    @IBOutlet weak var sceneView: UIView!
+    @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var connectingLabel: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var setupView: UIView!
     
-    #if !targetEnvironment(simulator)
     var faceAnchor: ARFaceAnchor?
     var leftPupil: Pupil?
     var rightPupil: Pupil?
     var arrow: Arrow?
-    #endif
     
     var point = UIView()
         
@@ -44,33 +39,35 @@ class ViewController: UIViewController {
         visualEffectView.layer.cornerRadius = 10
         visualEffectView.layer.masksToBounds = true
         
-        #if !targetEnvironment(simulator)
-        guard ARFaceTrackingConfiguration.isSupported else { fatalError() }
-        guard let sceneView = sceneView as? ARSCNView else { return }
-        sceneView.delegate = self
-        #endif
+        guard ARFaceTrackingConfiguration.isSupported else { fatalError("Face ID is not available on this device") }
         
         bluetoothWorker.delegate = self
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in self?.bluetoothWorker.scanAndConnect() }
     }
     
+    private func startARView() {
+        let configuration = ARFaceTrackingConfiguration()
+        
+        sceneView.scene.background.contents = UIColor.black
+        sceneView.session.run(configuration)
+    }
+    
+    private func pauseARView() {
+        sceneView.session.pause()
+    }
+    
     @objc private func didTap() {
-        #if targetEnvironment(simulator)
-        if calibration.state != .done {
-            calibration.calibrate(to: 0, y: 0)
-            calibration.next()
-        }
-        #else
         guard let faceAnchor = faceAnchor, bluetoothWorker.isConnected else { return }
+        
         if calibration.state == .done {
             guard let position = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y) else { return }
+            // TODO add labels in debug mode
             print("\(position.x) \(position.y)")
         } else {
             calibration.calibrate(to: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y)
             calibration.next()
         }
-        #endif
     }
     
     @objc private func didLongPress() {
@@ -81,19 +78,17 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        #if !targetEnvironment(simulator)
-        let configuration = ARFaceTrackingConfiguration()
-        
-        guard let sceneView = sceneView as? ARSCNView else { return }
-        sceneView.scene.background.contents = UIColor.black
-        sceneView.session.run(configuration)
-        #endif
-        
-        sceneView.isHidden = !settingsWorker.isDebugModeEnabled
+        startARView()
         
         if settingsWorker.isDebugModeEnabled {
             calibration.delegate = self
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        pauseARView()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -116,11 +111,9 @@ class ViewController: UIViewController {
     private let serialQueue = DispatchQueue(label: "com.neoxapps.laservision.serialSceneKitQueue")
 }
 
-#if !targetEnvironment(simulator)
 extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        guard let sceneView = sceneView as? ARSCNView,
-            let device = sceneView.device else { return nil }
+        guard let device = sceneView.device else { return nil }
         let faceGeometry = ARSCNFaceGeometry(device: device)
         faceGeometry?.firstMaterial?.fillMode = .lines
         faceGeometry?.firstMaterial?.transparency = 0.05
@@ -165,7 +158,6 @@ extension ViewController: ARSCNViewDelegate {
         bluetoothWorker.send(command)
     }
 }
-#endif
 
 extension ViewController: CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState) {
