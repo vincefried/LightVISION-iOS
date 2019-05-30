@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -135,7 +136,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRX-MT-HuY">
                                         <rect key="frame" x="28.000000000000004" y="0.0" width="34.333333333333343" height="20.666666666666668"/>
                                         <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="Highlight"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaL-wz-WGZ">
@@ -144,7 +145,7 @@
                                             <constraint firstAttribute="height" constant="25" id="7fA-U3-8eX"/>
                                             <constraint firstAttribute="width" constant="25" id="tBa-YY-D1n"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" name="Highlight"/>
                                         <state key="normal" image="refresh"/>
                                         <connections>
                                             <action selector="tappedRefreshButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mI7-tA-ag0"/>
@@ -158,14 +159,14 @@
                                     <constraint firstAttribute="width" constant="25" id="IPT-8P-REX"/>
                                     <constraint firstAttribute="height" constant="25" id="TM4-FP-2Rq"/>
                                 </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="Highlight"/>
                                 <state key="normal" image="settings"/>
                                 <connections>
                                     <segue destination="Nvh-pv-nFp" kind="show" id="58P-hC-b5U"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Background"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rQ4-m7-cYY" secondAttribute="trailing" id="3Tp-gO-7eV"/>
                             <constraint firstItem="zlZ-6h-wca" firstAttribute="top" secondItem="xJq-oM-AEa" secondAttribute="bottom" id="ChS-sF-ZCj"/>
@@ -216,7 +217,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="Zeq-Y7-Pmf">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="Highlight"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" name="Hauser" family="Hauser" pointSize="30"/>
                         </textAttributes>
@@ -241,9 +242,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94M-F2-BpV">
-                                <rect key="frame" x="77" y="337" width="221" height="138"/>
+                                <rect key="frame" x="77" y="337.33333333333331" width="221" height="137.33333333333331"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UCd-c5-Y3m">
-                                    <rect key="frame" x="0.0" y="0.0" width="221" height="138"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="221" height="137.33333333333331"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aYd-U9-TbE">
@@ -252,16 +253,16 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected with:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0za-X4-kYc">
                                                     <rect key="frame" x="0.0" y="0.0" width="157" height="26.333333333333332"/>
                                                     <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="22"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="Highlight"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Wta-vr-d71">
-                                                    <rect key="frame" x="0.0" y="42.333333333333314" width="157" height="31"/>
+                                                    <rect key="frame" x="0.0" y="42.333333333333371" width="157" height="31"/>
                                                     <subviews>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="23p-Qj-Eh4">
                                                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
-                                                            <color key="onTintColor" red="0.64710837600000004" green="0.1448077559" blue="0.65493577719999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="onTintColor" name="Primary"/>
+                                                            <color key="thumbTintColor" name="Highlight"/>
                                                             <connections>
                                                                 <action selector="toggledSwitch:" destination="PZM-cu-sZd" eventType="valueChanged" id="v7y-4q-uIp"/>
                                                             </connections>
@@ -269,7 +270,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kod-T9-y98">
                                                             <rect key="frame" x="65" y="0.0" width="92" height="31"/>
                                                             <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="22"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" name="Highlight"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -287,7 +288,7 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Background"/>
                         <constraints>
                             <constraint firstItem="hkB-r7-JFR" firstAttribute="trailing" secondItem="alS-HP-Ta1" secondAttribute="trailing" id="1Yx-lx-FRj"/>
                             <constraint firstAttribute="bottom" secondItem="alS-HP-Ta1" secondAttribute="bottom" id="5yT-bx-a6u"/>
@@ -329,13 +330,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOT CALIBRATED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqB-MW-OLV">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="161"/>
                                         <fontDescription key="fontDescription" name="Hauser" family="Hauser" pointSize="22"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="Highlight"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqo-Dy-ULp">
                                         <rect key="frame" x="0.0" y="185" width="375" height="161"/>
                                         <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="22"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="Highlight"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -347,6 +348,7 @@
                             <constraint firstItem="S2a-rc-pZ6" firstAttribute="leading" secondItem="ohz-Yv-HzQ" secondAttribute="leading" id="Ut8-R7-ow5"/>
                             <constraint firstItem="S2a-rc-pZ6" firstAttribute="top" secondItem="ohz-Yv-HzQ" secondAttribute="top" id="wbU-3E-41z"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="xjj-VS-Axf"/>
                     </view>
                     <connections>
                         <outlet property="descriptionLabel" destination="Xqo-Dy-ULp" id="iXE-vK-KTU"/>
@@ -363,5 +365,14 @@
         <image name="Logo_free" width="333" height="249.66667175292969"/>
         <image name="refresh" width="25" height="25"/>
         <image name="settings" width="33" height="33"/>
+        <namedColor name="Background">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Highlight">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.6470588235294118" green="0.14509803921568629" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
