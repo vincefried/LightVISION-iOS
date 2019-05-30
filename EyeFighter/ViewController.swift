@@ -23,8 +23,6 @@ class ViewController: UIViewController {
     var rightPupil: Pupil?
     var arrow: Arrow?
     
-    var point = UIView()
-        
     let calibration = Calibration()
     
     let bluetoothWorker = BluetoothWorker()
@@ -72,7 +70,6 @@ class ViewController: UIViewController {
     
     @objc private func didLongPress() {
         calibration.reset()
-        point.removeFromSuperview()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,8 +104,6 @@ class ViewController: UIViewController {
     @IBAction func tappedRefreshButton(_ sender: UIButton) {
         bluetoothWorker.connect()
     }
-    
-    private let serialQueue = DispatchQueue(label: "com.neoxapps.laservision.serialSceneKitQueue")
 }
 
 extension ViewController: ARSCNViewDelegate {
