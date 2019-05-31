@@ -37,53 +37,55 @@ protocol CalibrationDelegate {
     func changedFaceDetectedState(isFaceDetected: Bool)
 }
 
-class Calibration: Observable<CalibrationDelegate> {
+class Calibration {
+    var delegate: CalibrationDelegate?
+    
     var isFaceDetected: Bool = false {
         didSet {
-            observers.forEach { $1.changedFaceDetectedState(isFaceDetected: isFaceDetected) }
+            delegate?.changedFaceDetectedState(isFaceDetected: isFaceDetected)
         }
     }
     
     var state: CalibrationState = .initial {
         didSet {
-            observers.forEach { $1.calibrationStateDidChange(to: state) }
+            delegate?.calibrationStateDidChange(to: state)
         }
     }
     
     var centerX: Float? {
         didSet {
             guard let value = centerX else { return }
-            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
+            delegate?.calibrationDidChange(for: state, value: value)
         }
     }
     var centerY: Float? {
         didSet {
             guard let value = centerY else { return }
-            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
+            delegate?.calibrationDidChange(for: state, value: value)
         }
     }
     var maxX: Float? {
         didSet {
             guard let value = maxX else { return }
-            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
+            delegate?.calibrationDidChange(for: state, value: value)
         }
     }
     var minX: Float? {
         didSet {
             guard let value = minX else { return }
-            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
+            delegate?.calibrationDidChange(for: state, value: value)
         }
     }
     var maxY: Float? {
         didSet {
             guard let value = maxY else { return }
-            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
+            delegate?.calibrationDidChange(for: state, value: value)
         }
     }
     var minY: Float? {
         didSet {
             guard let value = minY else { return }
-            observers.forEach { $1.calibrationDidChange(for: state, value: value) }
+            delegate?.calibrationDidChange(for: state, value: value)
         }
     }
     

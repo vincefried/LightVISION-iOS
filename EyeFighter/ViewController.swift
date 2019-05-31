@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var setupView: UIView!
     @IBOutlet weak var faceActivityIndicator: FTLinearActivityIndicator!
+    @IBOutlet weak var upperContainerView: UIVisualEffectView!
+    @IBOutlet weak var setupTitleLabel: UILabel!
+    @IBOutlet weak var setupDescriptionLabel: UILabel!
     
     var faceAnchor: ARFaceAnchor?
     var leftPupil: Pupil?
@@ -30,6 +33,8 @@ class ViewController: UIViewController {
     let bluetoothWorker = BluetoothWorker()
     let settingsWorker = SettingsWorker()
     
+    var viewModel: SetupViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,15 +44,42 @@ class ViewController: UIViewController {
         visualEffectView.layer.cornerRadius = 10
         visualEffectView.layer.masksToBounds = true
         
+        setupUpperContainerView()
         setupARView()
         
         faceActivityIndicator.hidesWhenStopped = true
         faceActivityIndicator.tintColor = .white
         
-        calibration.addObserver(self, delegate: self)
+        calibration.delegate = self
         bluetoothWorker.delegate = self
         
+        viewModel = SetupViewModel(calibrationState: calibration.state, bluetoothWorker: bluetoothWorker)
+        viewModel.delegate = self
+        updateUI()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in self?.bluetoothWorker.scanAndConnect() }
+    }
+    
+    private func updateUI() {
+        setupTitleLabel.text = viewModel.titleText
+        setupTitleLabel.textColor = viewModel.titleTextColor
+        setupDescriptionLabel.text = viewModel.descriptionText
+
+        
+        if viewModel.isFaceDetected {
+            if faceActivityIndicator.isAnimating {
+                self.faceActivityIndicator.stopAnimating()
+            }
+        } else {
+            if !faceActivityIndicator.isAnimating {
+                self.faceActivityIndicator.startAnimating()
+            }
+        }
+    }
+    
+    private func setupUpperContainerView() {
+        upperContainerView.layer.cornerRadius = 10
+        upperContainerView.layer.masksToBounds = true
     }
     
     private func setupARView() {
@@ -101,11 +133,6 @@ class ViewController: UIViewController {
             let settingsViewController = navigationController.viewControllers.first as? SettingsViewController {
             let settingsViewModel = SettingsViewModel(settingsWorker: settingsWorker, bluetoothWorker: bluetoothWorker)
             settingsViewController.viewModel = settingsViewModel
-        }
-        
-        if let setupViewController = segue.destination as? SetupViewController {
-            calibration.addObserver(setupViewController, delegate: setupViewController)
-            setupViewController.viewModel = SetupViewModel(calibrationState: calibration.state, bluetoothWorker: bluetoothWorker)
         }
     }
     
@@ -168,9 +195,15 @@ extension ViewController: ARSCNViewDelegate {
     }
 }
 
+extension ViewController: SetupViewModelDelegate {
+    func updateUINeeded() {
+        updateUI()
+    }
+}
+
 extension ViewController: CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState) {
-        
+        viewModel.handleStateChange(calibrationState: state)
     }
     
     func calibrationDidChange(for state: CalibrationState, value: Float) {
@@ -178,15 +211,7 @@ extension ViewController: CalibrationDelegate {
     }
     
     func changedFaceDetectedState(isFaceDetected: Bool) {
-        if isFaceDetected {
-            if faceActivityIndicator.isAnimating {
-                self.faceActivityIndicator.stopAnimating()
-            }
-        } else {
-            if !faceActivityIndicator.isAnimating {
-                self.faceActivityIndicator.startAnimating()
-            }
-        }
+        viewModel.handleIsFaceDetected(isFaceDetected: isFaceDetected)
     }
 }
 

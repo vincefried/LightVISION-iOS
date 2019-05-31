@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SetupViewModelDelegate {
     func updateUINeeded()
@@ -15,8 +16,10 @@ protocol SetupViewModelDelegate {
 class SetupViewModel {
     var titleText: String = ""
     var descriptionText: String = ""
-    var isDescriptionLabelHidden: Bool = false
     
+    var titleTextColor: UIColor? = UIColor(named: "Red")
+    var descriptionTextColor: UIColor? = UIColor(named: "Highlight")
+
     var delegate: SetupViewModelDelegate?
     
     var calibrationState: CalibrationState
@@ -35,13 +38,12 @@ class SetupViewModel {
         
         self.isFaceDetected = isFaceDetected
         if !isFaceDetected {
-            titleText = "No face detected"
-            descriptionText = ""
+            titleText = "Kein Gesicht erkannt"
+            descriptionText = "Vor Gerät positionieren"
+            delegate?.updateUINeeded()
         } else {
             handleStateChange(calibrationState: self.calibrationState)
         }
-        
-        delegate?.updateUINeeded()
     }
     
     func handleStateChange(calibrationState: CalibrationState) {
@@ -49,29 +51,22 @@ class SetupViewModel {
         
         switch calibrationState {
         case .initial:
-            titleText = "Not calibrated"
-            descriptionText = "Tap to start"
-        case .center:
-            titleText = "Look to center"
-            descriptionText = "Tap to set"
-        case .right:
-            titleText = "Look right"
-            descriptionText = "Tap to set"
-        case .down:
-            titleText = "Look down"
-            descriptionText = "Tap to set"
-        case .left:
-            titleText = "Look left"
-            descriptionText = "Tap to set"
+            titleText = "Nicht kalibriert"
+            descriptionText = "Tippe zum Starten"
+            titleTextColor = UIColor(named: "Red")
+        case .center, .right, .down, .left:
+            titleText = "Schau auf den Punkt an der Wand"
+            descriptionText = "Tippe zum Fortfahren"
+            titleTextColor = UIColor(named: "Yellow")
         case .up:
-            titleText = "Look up"
-            descriptionText = "Tap to finish"
+            titleText = "Schau auf den Punkt an der Wand"
+            descriptionText = "Tippe zum Abschließen"
+            titleTextColor = UIColor(named: "Yellow")
         case .done:
-            titleText = "Calibrated"
-            descriptionText = ""
+            titleText = "Kalibriert"
+            descriptionText = "Gedrückt halten zum Zurücksetzen"
+            titleTextColor = UIColor(named: "Green")
         }
-        
-        isDescriptionLabelHidden = calibrationState == .done
         
         let border = Calibration.getCalibrationBorder(for: calibrationState)
         let command = ControlXYCommand(x: border.x, y: border.y)

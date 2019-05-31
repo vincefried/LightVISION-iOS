@@ -20,7 +20,6 @@
 		0B4D516322A0149B00C6E4D8 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B4D516222A0149B00C6E4D8 /* Models.scnassets */; };
 		0B4D516622A0154800C6E4D8 /* Pupil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4D516522A0154800C6E4D8 /* Pupil.swift */; };
 		0B4D516822A02B8100C6E4D8 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4D516722A02B8100C6E4D8 /* Arrow.swift */; };
-		0B4D516B22A046D900C6E4D8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4D516A22A046D900C6E4D8 /* Observable.swift */; };
 		0B6400C7228AA3EA00ED58D4 /* ControlXYCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */; };
 		0BD08100225C9FBD0089209A /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD080FF225C9FBD0089209A /* Calibration.swift */; };
 		0BD14448229D299B00A60FC1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD14447229D299B00A60FC1 /* SettingsViewController.swift */; };
@@ -28,7 +27,6 @@
 		0BD1444F229D2FA900A60FC1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */; };
 		0BD1445B229E77ED00A60FC1 /* Hauser Condensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BD1445A229E77BF00A60FC1 /* Hauser Condensed.ttf */; };
 		0BD1445C229E77ED00A60FC1 /* Hauser.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BD14459229E77BF00A60FC1 /* Hauser.ttf */; };
-		0BD1445E229E7AE100A60FC1 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1445D229E7AE100A60FC1 /* SetupViewController.swift */; };
 		0BD14460229E7E0E00A60FC1 /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1445F229E7E0E00A60FC1 /* SetupViewModel.swift */; };
 		0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE11340225CC50A002A3429 /* EyePosition.swift */; };
 		B1CB4446893589DF703F5E90 /* Pods_EyeFighterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502450CFB9829ADCEB17FD13 /* Pods_EyeFighterTests.framework */; };
@@ -73,7 +71,6 @@
 		0B4D516222A0149B00C6E4D8 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		0B4D516522A0154800C6E4D8 /* Pupil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pupil.swift; sourceTree = "<group>"; };
 		0B4D516722A02B8100C6E4D8 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
-		0B4D516A22A046D900C6E4D8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlXYCommand.swift; sourceTree = "<group>"; };
 		0BD080FF225C9FBD0089209A /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
 		0BD14447229D299B00A60FC1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +78,6 @@
 		0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0BD14459229E77BF00A60FC1 /* Hauser.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hauser.ttf; sourceTree = "<group>"; };
 		0BD1445A229E77BF00A60FC1 /* Hauser Condensed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hauser Condensed.ttf"; sourceTree = "<group>"; };
-		0BD1445D229E7AE100A60FC1 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		0BD1445F229E7E0E00A60FC1 /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
 		0BE11340225CC50A002A3429 /* EyePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyePosition.swift; sourceTree = "<group>"; };
 		14E2F6B18A36233FC1412579 /* Pods-EyeFighterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyeFighterTests.debug.xcconfig"; path = "Target Support Files/Pods-EyeFighterTests/Pods-EyeFighterTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,7 +144,6 @@
 		0B1DFEFB2253605000329B7F /* EyeFighter */ = {
 			isa = PBXGroup;
 			children = (
-				0B4D516922A046C600C6E4D8 /* Helper */,
 				0B4D516422A0151A00C6E4D8 /* ARNodes */,
 				0BD14450229E6EFF00A60FC1 /* Fonts */,
 				0BD1444D229D2F9D00A60FC1 /* ViewModel */,
@@ -158,7 +153,6 @@
 				0B4C5C832269F72C0054722C /* Commands */,
 				0B1DFEFC2253605000329B7F /* AppDelegate.swift */,
 				0B1DFEFE2253605000329B7F /* ViewController.swift */,
-				0BD1445D229E7AE100A60FC1 /* SetupViewController.swift */,
 				0BD14447229D299B00A60FC1 /* SettingsViewController.swift */,
 				0B1DFF002253605000329B7F /* Main.storyboard */,
 				0B4D516222A0149B00C6E4D8 /* Models.scnassets */,
@@ -223,14 +217,6 @@
 			path = ARNodes;
 			sourceTree = "<group>";
 		};
-		0B4D516922A046C600C6E4D8 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				0B4D516A22A046D900C6E4D8 /* Observable.swift */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
 		0BD14449229D2E3100A60FC1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +253,6 @@
 				F3C25519AF9B0467B1C0798B /* Pods-EyeFighterUITests.debug.xcconfig */,
 				919B343D35C746BE5B03A07B /* Pods-EyeFighterUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -524,10 +509,8 @@
 				0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */,
 				0B1DFEFF2253605000329B7F /* ViewController.swift in Sources */,
 				0BD08100225C9FBD0089209A /* Calibration.swift in Sources */,
-				0B4D516B22A046D900C6E4D8 /* Observable.swift in Sources */,
 				0B4D516622A0154800C6E4D8 /* Pupil.swift in Sources */,
 				0B1DFEFD2253605000329B7F /* AppDelegate.swift in Sources */,
-				0BD1445E229E7AE100A60FC1 /* SetupViewController.swift in Sources */,
 				0BD1444F229D2FA900A60FC1 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
