@@ -16,7 +16,6 @@
 		0B1DFF1D2253605300329B7F /* EyeFighterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1DFF1C2253605300329B7F /* EyeFighterUITests.swift */; };
 		0B4C5C882269F7480054722C /* BluetoothWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C872269F7480054722C /* BluetoothWorker.swift */; };
 		0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */; };
-		0B4C5C8C226A03E20054722C /* ActivateLedCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */; };
 		0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5C862269F73B0054722C /* BluetoothCommand.swift */; };
 		0B4D516322A0149B00C6E4D8 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B4D516222A0149B00C6E4D8 /* Models.scnassets */; };
 		0B4D516622A0154800C6E4D8 /* Pupil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4D516522A0154800C6E4D8 /* Pupil.swift */; };
@@ -65,7 +64,6 @@
 		0B1DFF182253605300329B7F /* EyeFighterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EyeFighterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1DFF1C2253605300329B7F /* EyeFighterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeFighterUITests.swift; sourceTree = "<group>"; };
 		0B1DFF1E2253605300329B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateLedCommand.swift; sourceTree = "<group>"; };
 		0B4C5C862269F73B0054722C /* BluetoothCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCommand.swift; sourceTree = "<group>"; };
 		0B4C5C872269F7480054722C /* BluetoothWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothWorker.swift; sourceTree = "<group>"; };
 		0B4C5C8A2269FBFF0054722C /* BluetoothDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevice.swift; sourceTree = "<group>"; };
@@ -176,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				0B4C5C862269F73B0054722C /* BluetoothCommand.swift */,
-				0B4C5C852269F73B0054722C /* ActivateLedCommand.swift */,
 				0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */,
 			);
 			path = Commands;
@@ -389,7 +386,6 @@
 				0BD14448229D299B00A60FC1 /* SettingsViewController.swift in Sources */,
 				0B4C5C882269F7480054722C /* BluetoothWorker.swift in Sources */,
 				0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */,
-				0B4C5C8C226A03E20054722C /* ActivateLedCommand.swift in Sources */,
 				0B1DFEFF2253605000329B7F /* ViewController.swift in Sources */,
 				0BD08100225C9FBD0089209A /* Calibration.swift in Sources */,
 				0B4D516B22A046D900C6E4D8 /* Observable.swift in Sources */,

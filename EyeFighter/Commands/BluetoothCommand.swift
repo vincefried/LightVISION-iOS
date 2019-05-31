@@ -8,24 +8,17 @@
 
 import Foundation
 
-enum Command: String, Codable {
-    case activate = "a"
-    case xyDirection = "xy"
-}
-
-protocol BluetoothCommand: Codable {
-    var c: Command { get }
-    var jsonData: Data? { get }
+protocol BluetoothCommand {
+    var data: Data? { get }
+    var stringRepresentation: String { get }
 }
 
 extension BluetoothCommand {
-    var jsonData: Data? {
-        do {
-            let data = try JSONEncoder().encode(self)
-            let string = String(data: data, encoding: .utf8)
-            return string?.appending("\n").data(using: .utf8)
-        } catch {
-            return nil
-        }
+    var data: Data? {
+        // Append new line feed \n as ordinal number to data
+        guard var data = stringRepresentation.data(using: .utf8),
+            let char = Character("\n").asciiValue else { return nil }
+        data.append(char)
+        return data
     }
 }

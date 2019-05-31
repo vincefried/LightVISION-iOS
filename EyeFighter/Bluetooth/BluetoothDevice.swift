@@ -9,7 +9,7 @@
 import Foundation
 
 enum BluetoothDevice: String {
-    case laservision = "Laservision"
+    case laservision = "LightVISION"
     
     var name: String {
         return rawValue

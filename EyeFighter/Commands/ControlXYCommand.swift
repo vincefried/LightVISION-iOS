@@ -9,7 +9,9 @@
 import Foundation
 
 struct ControlXYCommand: BluetoothCommand {
-    var c: Command = .xyDirection
+    var stringRepresentation: String {
+        return "x\(x)y\(y)"
+    }
     
     let x: Int
     let y: Int

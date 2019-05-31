@@ -21,6 +21,8 @@ protocol BluetoothWorkerDelegate {
 
 class BluetoothWorker: NSObject {
     
+    var maximumPackageSize: Int?
+    
     let manager = CBCentralManager()
 
     var delegate: BluetoothWorkerDelegate?
@@ -106,8 +108,17 @@ class BluetoothWorker: NSObject {
     }
     
     func send(_ command: BluetoothCommand) {
-        guard let data = command.jsonData, let characteristic = characteristic else { return }
-        connectedPeripheral?.writeValue(data, for: characteristic, type: .withoutResponse)
+        guard let data = command.data else { return }
+        send(data: data)
+    }
+    
+    func send(data: Data) {
+        guard let characteristic = characteristic, let maximumPackageSize = maximumPackageSize else { return }
+        if data.count > maximumPackageSize {
+            print("Connected Peripheral does not support package size \(data.count). Maximum is \(maximumPackageSize)")
+        } else {
+            connectedPeripheral?.writeValue(data, for: characteristic, type: .withoutResponse)
+        }
     }
 }
 
@@ -145,6 +156,7 @@ extension BluetoothWorker: CBCentralManagerDelegate {
         central.stopScan()
         peripheral.delegate = self
         peripheral.discoverServices(nil)
+        maximumPackageSize = peripheral.maximumWriteValueLength(for: .withoutResponse)
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
@@ -156,6 +168,7 @@ extension BluetoothWorker: CBCentralManagerDelegate {
         connectedPeripheral = nil
         service = nil
         characteristic = nil
+        maximumPackageSize = nil
     }
 }
 
