@@ -20,6 +20,7 @@
 		0B4D516322A0149B00C6E4D8 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B4D516222A0149B00C6E4D8 /* Models.scnassets */; };
 		0B4D516622A0154800C6E4D8 /* Pupil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4D516522A0154800C6E4D8 /* Pupil.swift */; };
 		0B4D516822A02B8100C6E4D8 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4D516722A02B8100C6E4D8 /* Arrow.swift */; };
+		0B4D516D22A187F600C6E4D8 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4D516C22A187F600C6E4D8 /* ConnectionViewModel.swift */; };
 		0B6400C7228AA3EA00ED58D4 /* ControlXYCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */; };
 		0BD08100225C9FBD0089209A /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD080FF225C9FBD0089209A /* Calibration.swift */; };
 		0BD14448229D299B00A60FC1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD14447229D299B00A60FC1 /* SettingsViewController.swift */; };
@@ -71,6 +72,7 @@
 		0B4D516222A0149B00C6E4D8 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		0B4D516522A0154800C6E4D8 /* Pupil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pupil.swift; sourceTree = "<group>"; };
 		0B4D516722A02B8100C6E4D8 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		0B4D516C22A187F600C6E4D8 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
 		0B6400C6228AA3EA00ED58D4 /* ControlXYCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlXYCommand.swift; sourceTree = "<group>"; };
 		0BD080FF225C9FBD0089209A /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
 		0BD14447229D299B00A60FC1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			children = (
 				0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */,
 				0BD1445F229E7E0E00A60FC1 /* SetupViewModel.swift */,
+				0B4D516C22A187F600C6E4D8 /* ConnectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				0B4D516822A02B8100C6E4D8 /* Arrow.swift in Sources */,
 				0BD1444B229D2E3B00A60FC1 /* SettingsWorker.swift in Sources */,
 				0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */,
+				0B4D516D22A187F600C6E4D8 /* ConnectionViewModel.swift in Sources */,
 				0B4C5C8B2269FBFF0054722C /* BluetoothDevice.swift in Sources */,
 				0BD14460229E7E0E00A60FC1 /* SetupViewModel.swift in Sources */,
 				0BD14448229D299B00A60FC1 /* SettingsViewController.swift in Sources */,

@@ -33,8 +33,9 @@ class ViewController: UIViewController {
     let bluetoothWorker = BluetoothWorker()
     let settingsWorker = SettingsWorker()
     
-    var viewModel: SetupViewModel!
-    
+    var setupViewModel: SetupViewModel!
+    var connectionViewModel: ConnectionViewModel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,20 +54,37 @@ class ViewController: UIViewController {
         calibration.delegate = self
         bluetoothWorker.delegate = self
         
-        viewModel = SetupViewModel(calibrationState: calibration.state, bluetoothWorker: bluetoothWorker)
-        viewModel.delegate = self
-        updateUI()
+        setupViewModel = SetupViewModel(calibrationState: calibration.state, isFaceDetected: calibration.isFaceDetected, bluetoothWorker: bluetoothWorker)
+        setupViewModel.delegate = self
+        updateSetupContainerUI()
+        
+        connectionViewModel = ConnectionViewModel(state: bluetoothWorker.connectionState, bluetoothWorker: bluetoothWorker)
+        connectionViewModel.delegate = self
+        updateConnectionContainerUI()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in self?.bluetoothWorker.scanAndConnect() }
     }
     
-    private func updateUI() {
-        setupTitleLabel.text = viewModel.titleText
-        setupTitleLabel.textColor = viewModel.titleTextColor
-        setupDescriptionLabel.text = viewModel.descriptionText
+    private func updateConnectionContainerUI() {
+        connectingLabel.text = connectionViewModel.connectionText
+        connectingLabel.textColor = connectionViewModel.connectionTextColor
+        
+        refreshButton.isHidden = connectionViewModel.isRefreshButtonHidden
+        
+        if connectionViewModel.isAnimating {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func updateSetupContainerUI() {
+        setupTitleLabel.text = setupViewModel.titleText
+        setupTitleLabel.textColor = setupViewModel.titleTextColor
+        setupDescriptionLabel.text = setupViewModel.descriptionText
 
         
-        if viewModel.isFaceDetected {
+        if setupViewModel.isFaceDetected {
             if faceActivityIndicator.isAnimating {
                 self.faceActivityIndicator.stopAnimating()
             }
@@ -137,7 +155,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tappedRefreshButton(_ sender: UIButton) {
-        bluetoothWorker.connect()
+        connectionViewModel.handleRefreshButtonPressed()
     }
 }
 
@@ -161,7 +179,10 @@ extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
         guard let pointOfView = sceneView.pointOfView,
             let leftPupil = leftPupil,
-            let rightPupil = rightPupil else { return }
+            let rightPupil = rightPupil else {
+                calibration.isFaceDetected = false
+                return
+        }
 
         DispatchQueue.main.async {
             self.calibration.isFaceDetected = self.sceneView.isNode(leftPupil, insideFrustumOf: pointOfView) && self.sceneView.isNode(rightPupil, insideFrustumOf: pointOfView)
@@ -196,14 +217,20 @@ extension ViewController: ARSCNViewDelegate {
 }
 
 extension ViewController: SetupViewModelDelegate {
-    func updateUINeeded() {
-        updateUI()
+    func updateSetupUINeeded() {
+        updateSetupContainerUI()
+    }
+}
+
+extension ViewController: ConnectionViewModelDelegate {
+    func updateConnectionUINeeded() {
+        updateConnectionContainerUI()
     }
 }
 
 extension ViewController: CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState) {
-        viewModel.handleStateChange(calibrationState: state)
+        setupViewModel.handleStateChange(calibrationState: state)
     }
     
     func calibrationDidChange(for state: CalibrationState, value: Float) {
@@ -211,41 +238,13 @@ extension ViewController: CalibrationDelegate {
     }
     
     func changedFaceDetectedState(isFaceDetected: Bool) {
-        viewModel.handleIsFaceDetected(isFaceDetected: isFaceDetected)
+        setupViewModel.handleIsFaceDetected(isFaceDetected: isFaceDetected)
     }
 }
 
 extension ViewController: BluetoothWorkerDelegate {
     func changedConnectionState(_ state: ConnectionState) {
-        switch state {
-        case .connecting:
-            activityIndicator.startAnimating()
-            connectingLabel.text = "Connecting..."
-        case .connected:
-            activityIndicator.stopAnimating()
-            connectingLabel.text = "Connected"
-        case .disconnected:
-            activityIndicator.stopAnimating()
-            connectingLabel.text = "No connection"
-        case .deviceNotFound:
-            activityIndicator.startAnimating()
-            connectingLabel.text = "Device not found"
-        }
-        
-        if state == .deviceNotFound {
-            self.refreshButton.alpha = 0.0
-        }
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            if state == .deviceNotFound {
-                self.refreshButton.isHidden = false
-            }
-            self.refreshButton.alpha = state == .deviceNotFound ? 1.0 : 0.0
-        }) { _ in
-            self.refreshButton.isHidden = state != .deviceNotFound
-        }
-        
-        connectingLabel.textColor = state == .connected ? .green : .white
+        connectionViewModel.handleConnectionStateChange(connectionState: state)
     }
     
     func connectedDevice(_ device: BluetoothDevice) {

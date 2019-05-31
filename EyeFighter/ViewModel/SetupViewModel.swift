@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol SetupViewModelDelegate {
-    func updateUINeeded()
+    func updateSetupUINeeded()
 }
 
 class SetupViewModel {
@@ -23,24 +23,29 @@ class SetupViewModel {
     var delegate: SetupViewModelDelegate?
     
     var calibrationState: CalibrationState
-    var isFaceDetected: Bool = false
+    var isFaceDetected: Bool
     
-    let bluetoothWorker: BluetoothWorker
+    private let bluetoothWorker: BluetoothWorker
     
-    init(calibrationState: CalibrationState, bluetoothWorker: BluetoothWorker) {
+    init(calibrationState: CalibrationState, isFaceDetected: Bool, bluetoothWorker: BluetoothWorker) {
         self.bluetoothWorker = bluetoothWorker
         self.calibrationState = calibrationState
+        self.isFaceDetected = isFaceDetected
         handleStateChange(calibrationState: calibrationState)
+        updateIsFaceDetected(isFaceDetected: isFaceDetected)
     }
     
     func handleIsFaceDetected(isFaceDetected: Bool) {
         guard isFaceDetected != self.isFaceDetected else { return }
-        
         self.isFaceDetected = isFaceDetected
+        updateIsFaceDetected(isFaceDetected: isFaceDetected)
+    }
+    
+    private func updateIsFaceDetected(isFaceDetected: Bool) {
         if !isFaceDetected {
             titleText = "Kein Gesicht erkannt"
             descriptionText = "Vor Gerät positionieren"
-            delegate?.updateUINeeded()
+            delegate?.updateSetupUINeeded()
         } else {
             handleStateChange(calibrationState: self.calibrationState)
         }
@@ -72,6 +77,6 @@ class SetupViewModel {
         let command = ControlXYCommand(x: border.x, y: border.y)
         bluetoothWorker.send(command)
         
-        delegate?.updateUINeeded()
+        delegate?.updateSetupUINeeded()
     }
 }

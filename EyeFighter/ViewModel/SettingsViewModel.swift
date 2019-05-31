@@ -17,7 +17,7 @@ struct SettingsViewModel {
     init(settingsWorker: SettingsWorker, bluetoothWorker: BluetoothWorker) {
         self.settingsWorker = settingsWorker
         
-        self.connectedLabelText = "Connected with: " + (bluetoothWorker.connectedPeripheral?.name ?? "No device")
+        self.connectedLabelText = "Verbunden mit: " + (bluetoothWorker.connectedPeripheral?.name ?? "Keinem Gerät")
         self.isDebugSwitchOn = settingsWorker.isDebugModeEnabled
     }
     
