@@ -357,7 +357,7 @@
 			};
 			buildConfigurationList = 0B1DFEF42253605000329B7F /* Build configuration list for PBXProject "EyeFighter" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = Germany;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
