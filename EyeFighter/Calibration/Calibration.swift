@@ -117,19 +117,19 @@ class Calibration: Observable<CalibrationDelegate> {
         var border = (x: 0, y: 0)
         switch state {
         case .center:
-            border = (x: 128, y: 128)
+            border = (x: 128, y: 150)
         case .right:
-            border = (x: 76, y: 128)
+            border = (x: 76, y: 150)
         case .down:
-            border = (x: 128, y: 180)
+            border = (x: 128, y: 200)
         case .left:
-            border = (x: 180, y: 128)
+            border = (x: 180, y: 150)
         case .up:
-            border = (x: 128, y: 76)
+            border = (x: 128, y: 100)
         case .initial:
-            border = (x: 128, y: 128)
+            border = (x: 128, y: 150)
         case .done:
-            border = (x: 128, y: 128)
+            border = (x: 128, y: 150)
         }
         return (x: 255 - border.x, y: 255 - border.y)
     }
@@ -145,10 +145,10 @@ class Calibration: Observable<CalibrationDelegate> {
         let xBorder: Float = x < centerX ? minX : maxX
         let yBorder: Float = y < centerY ? minY : maxY
         
-        let xFactor: Float = (Float(Calibration.getCalibrationBorder(for: .right).x) - Float(Calibration.getCalibrationBorder(for: .center).x))
-            / abs(xBorder)
-        let yFactor: Float = (Float(Calibration.getCalibrationBorder(for: .up).y) - Float(Calibration.getCalibrationBorder(for: .center).y))
-            / abs(yBorder)
+        let xFactor: Float = ((Float(Calibration.getCalibrationBorder(for: .right).x) - Float(Calibration.getCalibrationBorder(for: .center).x))
+            / abs(xBorder)) * 1.4
+        let yFactor: Float = ((Float(Calibration.getCalibrationBorder(for: .up).y) - Float(Calibration.getCalibrationBorder(for: .center).y))
+            / abs(yBorder)) * 0.8
         
         let newX: Float = max(min(xFactor * x + Float(Calibration.getCalibrationBorder(for: .center).x), 255), 0)
         let newY: Float = max(min(yFactor * y + Float(Calibration.getCalibrationBorder(for: .center).y), 255), 0)

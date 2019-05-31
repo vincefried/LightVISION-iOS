@@ -9,7 +9,7 @@
 import ARKit
 import SceneKit
 
-class Arrow: SCNNode {
+class Arrow: SCNNode {    
     override init() {
         super.init()
         

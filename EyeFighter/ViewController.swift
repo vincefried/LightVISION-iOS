@@ -157,17 +157,16 @@ extension ViewController: CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState) {
         switch state {
         case .right:
-            arrow?.rotation = SCNQuaternion(90, 0, 0, 0)
+            arrow?.eulerAngles = SCNVector3Make(0, 0, 0)
         case .down:
-            arrow?.rotation = SCNQuaternion(180, 0, 0, 0)
+            arrow?.eulerAngles = SCNVector3Make(0, 0, Float.pi / 3.0)
         case .left:
-            arrow?.rotation = SCNQuaternion(270, 0, 0, 0)
+            arrow?.eulerAngles = SCNVector3Make(0, Float.pi / 2.0, 0)
         case .up:
-            arrow?.rotation = SCNQuaternion(180, 0, 0, 0)
+            arrow?.eulerAngles = SCNVector3Make(0, Float.pi / 2.0, 0)
         default:
             break
         }
-        
         arrow?.isHidden = state == .initial || state == .center || state == .done
     }
     

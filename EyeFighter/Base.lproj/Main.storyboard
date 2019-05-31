@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lB-YC-LJX" customClass="ARSCNView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="466"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Afh-aP-hZp"/>
@@ -122,7 +122,7 @@
                             <constraint firstItem="exm-h1-DMP" firstAttribute="centerY" secondItem="p10-xp-TIL" secondAttribute="centerY" id="euf-5u-nIg"/>
                             <constraint firstItem="p10-xp-TIL" firstAttribute="bottom" secondItem="xJq-oM-AEa" secondAttribute="bottom" constant="-16" id="hdz-j2-t5W"/>
                             <constraint firstItem="xJq-oM-AEa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="iy1-fj-QuO"/>
-                            <constraint firstItem="rQ4-m7-cYY" firstAttribute="top" secondItem="9lB-YC-LJX" secondAttribute="bottom" id="jkf-Uh-Oej"/>
+                            <constraint firstAttribute="bottom" secondItem="9lB-YC-LJX" secondAttribute="bottom" id="jkf-Uh-Oej"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
