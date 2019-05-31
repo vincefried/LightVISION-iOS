@@ -19,14 +19,34 @@ class SetupViewModel {
     
     var delegate: SetupViewModelDelegate?
     
+    var calibrationState: CalibrationState
+    var isFaceDetected: Bool = false
+    
     let bluetoothWorker: BluetoothWorker
     
     init(calibrationState: CalibrationState, bluetoothWorker: BluetoothWorker) {
         self.bluetoothWorker = bluetoothWorker
+        self.calibrationState = calibrationState
         handleStateChange(calibrationState: calibrationState)
     }
     
+    func handleIsFaceDetected(isFaceDetected: Bool) {
+        guard isFaceDetected != self.isFaceDetected else { return }
+        
+        self.isFaceDetected = isFaceDetected
+        if !isFaceDetected {
+            titleText = "No face detected"
+            descriptionText = ""
+        } else {
+            handleStateChange(calibrationState: self.calibrationState)
+        }
+        
+        delegate?.updateUINeeded()
+    }
+    
     func handleStateChange(calibrationState: CalibrationState) {
+        self.calibrationState = calibrationState
+        
         switch calibrationState {
         case .initial:
             titleText = "Not calibrated"
@@ -47,7 +67,7 @@ class SetupViewModel {
             titleText = "Look up"
             descriptionText = "Tap to finish"
         case .done:
-            titleText = "Calibration done"
+            titleText = "Calibrated"
             descriptionText = ""
         }
         

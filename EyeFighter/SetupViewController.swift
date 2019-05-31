@@ -35,6 +35,10 @@ extension SetupViewController: SetupViewModelDelegate {
 }
 
 extension SetupViewController: CalibrationDelegate {
+    func changedFaceDetectedState(isFaceDetected: Bool) {
+        viewModel.handleIsFaceDetected(isFaceDetected: isFaceDetected)
+    }
+    
     func calibrationStateDidChange(to state: CalibrationState) {
         viewModel.handleStateChange(calibrationState: state)
     }

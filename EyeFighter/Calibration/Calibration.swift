@@ -34,9 +34,16 @@ enum CalibrationState: String {
 protocol CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState)
     func calibrationDidChange(for state: CalibrationState, value: Float)
+    func changedFaceDetectedState(isFaceDetected: Bool)
 }
 
 class Calibration: Observable<CalibrationDelegate> {
+    var isFaceDetected: Bool = false {
+        didSet {
+            observers.forEach { $1.changedFaceDetectedState(isFaceDetected: isFaceDetected) }
+        }
+    }
+    
     var state: CalibrationState = .initial {
         didSet {
             observers.forEach { $1.calibrationStateDidChange(to: state) }

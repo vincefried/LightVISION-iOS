@@ -8,6 +8,7 @@
 
 import UIKit
 import ARKit
+import FTLinearActivityIndicator
 
 class ViewController: UIViewController {
     
@@ -17,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var setupView: UIView!
+    @IBOutlet weak var faceActivityIndicator: FTLinearActivityIndicator!
     
     var faceAnchor: ARFaceAnchor?
     var leftPupil: Pupil?
@@ -39,6 +41,9 @@ class ViewController: UIViewController {
         
         setupARView()
         
+        faceActivityIndicator.hidesWhenStopped = true
+        faceActivityIndicator.tintColor = .white
+        
         calibration.addObserver(self, delegate: self)
         bluetoothWorker.delegate = self
         
@@ -47,7 +52,7 @@ class ViewController: UIViewController {
     
     private func setupARView() {
         guard ARFaceTrackingConfiguration.isSupported else { fatalError("Face ID is not available on this device") }
-
+        
         arrow = Arrow()
         guard let arrow = arrow else { return }
         sceneView.scene.rootNode.addChildNode(arrow)
@@ -126,6 +131,16 @@ extension ViewController: ARSCNViewDelegate {
         return node
     }
     
+    func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
+        guard let pointOfView = sceneView.pointOfView,
+            let leftPupil = leftPupil,
+            let rightPupil = rightPupil else { return }
+
+        DispatchQueue.main.async {
+            self.calibration.isFaceDetected = self.sceneView.isNode(leftPupil, insideFrustumOf: pointOfView) && self.sceneView.isNode(rightPupil, insideFrustumOf: pointOfView)
+        }
+    }
+    
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         faceAnchor = anchor as? ARFaceAnchor
 
@@ -160,6 +175,18 @@ extension ViewController: CalibrationDelegate {
     
     func calibrationDidChange(for state: CalibrationState, value: Float) {
         print("Saved point \(value) for \(state.rawValue)")
+    }
+    
+    func changedFaceDetectedState(isFaceDetected: Bool) {
+        if isFaceDetected {
+            if faceActivityIndicator.isAnimating {
+                self.faceActivityIndicator.stopAnimating()
+            }
+        } else {
+            if !faceActivityIndicator.isAnimating {
+                self.faceActivityIndicator.startAnimating()
+            }
+        }
     }
 }
 

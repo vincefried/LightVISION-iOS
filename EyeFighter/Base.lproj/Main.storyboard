@@ -34,6 +34,22 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Afh-aP-hZp"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZmL-wA-vXP">
+                                <rect key="frame" x="0.0" y="93" width="375" height="373"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ml9-aJ-0xI" customClass="FTLinearActivityIndicator" customModule="FTLinearActivityIndicator">
+                                        <rect key="frame" x="137.66666666666666" y="182.66666666666669" width="100" height="8"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="8" id="UMc-6H-pqR"/>
+                                            <constraint firstAttribute="width" constant="100" id="hxR-MN-b0w"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ml9-aJ-0xI" firstAttribute="centerY" secondItem="ZmL-wA-vXP" secondAttribute="centerY" id="8Ga-9e-Ey9"/>
+                                    <constraint firstItem="Ml9-aJ-0xI" firstAttribute="centerX" secondItem="ZmL-wA-vXP" secondAttribute="centerX" id="hle-oN-y7C"/>
+                                </constraints>
+                            </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQ4-m7-cYY">
                                 <rect key="frame" x="0.0" y="466" width="375" height="346"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Xeg-Pv-GHZ">
@@ -109,8 +125,10 @@
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rQ4-m7-cYY" secondAttribute="trailing" id="3Tp-gO-7eV"/>
+                            <constraint firstItem="rQ4-m7-cYY" firstAttribute="top" secondItem="ZmL-wA-vXP" secondAttribute="bottom" id="93r-c9-eiY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="exm-h1-DMP" secondAttribute="trailing" constant="16" id="ERK-IV-W88"/>
                             <constraint firstItem="9lB-YC-LJX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ebr-4i-Brv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZmL-wA-vXP" secondAttribute="trailing" id="JfQ-Uz-biA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xJq-oM-AEa" secondAttribute="trailing" id="KfK-kJ-42D"/>
                             <constraint firstItem="p10-xp-TIL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="QSI-mH-mNH"/>
                             <constraint firstItem="rQ4-m7-cYY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RxT-AS-E5q"/>
@@ -123,12 +141,15 @@
                             <constraint firstItem="p10-xp-TIL" firstAttribute="bottom" secondItem="xJq-oM-AEa" secondAttribute="bottom" constant="-16" id="hdz-j2-t5W"/>
                             <constraint firstItem="xJq-oM-AEa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="iy1-fj-QuO"/>
                             <constraint firstAttribute="bottom" secondItem="9lB-YC-LJX" secondAttribute="bottom" id="jkf-Uh-Oej"/>
+                            <constraint firstItem="ZmL-wA-vXP" firstAttribute="top" secondItem="xJq-oM-AEa" secondAttribute="bottom" id="oRI-pF-pNt"/>
+                            <constraint firstItem="ZmL-wA-vXP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tx4-AD-q9g"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="NFs-yA-nwd" id="vS2-94-U3X"/>
                         <outlet property="connectingLabel" destination="vRX-MT-HuY" id="v86-6o-S50"/>
+                        <outlet property="faceActivityIndicator" destination="Ml9-aJ-0xI" id="hJj-bL-R6u"/>
                         <outlet property="refreshButton" destination="JaL-wz-WGZ" id="52c-Wi-DXZ"/>
                         <outlet property="sceneView" destination="9lB-YC-LJX" id="2j8-vA-ZGN"/>
                         <outlet property="setupView" destination="uif-NP-bj0" id="pGn-CI-3Zi"/>
