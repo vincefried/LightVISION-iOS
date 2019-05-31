@@ -137,7 +137,7 @@ extension ViewController: ARSCNViewDelegate {
         }
         
         if let arrow = arrow, let camera = sceneView.pointOfView {
-            arrow.update(position: node.position, camera: camera)
+            arrow.update(position: node.position, camera: camera, calibrationState: calibration.state)
         }
         
         if let faceGeometry = node.geometry as? ARSCNFaceGeometry {
@@ -155,19 +155,7 @@ extension ViewController: ARSCNViewDelegate {
 
 extension ViewController: CalibrationDelegate {
     func calibrationStateDidChange(to state: CalibrationState) {
-        switch state {
-        case .right:
-            arrow?.eulerAngles = SCNVector3Make(0, 0, 0)
-        case .down:
-            arrow?.eulerAngles = SCNVector3Make(0, 0, Float.pi / 3.0)
-        case .left:
-            arrow?.eulerAngles = SCNVector3Make(0, Float.pi / 2.0, 0)
-        case .up:
-            arrow?.eulerAngles = SCNVector3Make(0, Float.pi / 2.0, 0)
-        default:
-            break
-        }
-        arrow?.isHidden = state == .initial || state == .center || state == .done
+        
     }
     
     func calibrationDidChange(for state: CalibrationState, value: Float) {
