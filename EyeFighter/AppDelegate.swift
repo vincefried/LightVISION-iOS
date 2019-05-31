@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        setupAppCenter()
         return true
     }
 
@@ -41,8 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func changeRootViewController(to viewController: UIViewController) {
-        window?.rootViewController = viewController
+    private func setupAppCenter() {
+        MSAppCenter.start("b95f1b7c-7b59-48f7-af1f-2acec8abc818", withServices:[
+            MSAnalytics.self,
+            MSCrashes.self
+        ])
     }
 }
 

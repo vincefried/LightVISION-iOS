@@ -65,7 +65,7 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTap() {
-        guard let faceAnchor = faceAnchor/*, bluetoothWorker.isConnected*/ else { return }
+        guard let faceAnchor = faceAnchor, (bluetoothWorker.isConnected || settingsWorker.isDebugModeEnabled) else { return }
         
         if calibration.state == .done {
             guard let position = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y) else { return }

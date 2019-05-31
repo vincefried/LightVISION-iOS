@@ -1,0 +1,27 @@
+PODS:
+  - AppCenter (1.13.1):
+    - AppCenter/Analytics (= 1.13.1)
+    - AppCenter/Crashes (= 1.13.1)
+  - AppCenter/Analytics (1.13.1):
+    - AppCenter/Core
+  - AppCenter/Core (1.13.1)
+  - AppCenter/Crashes (1.13.1):
+    - AppCenter/Core
+  - FTLinearActivityIndicator (1.1.2)
+
+DEPENDENCIES:
+  - AppCenter
+  - FTLinearActivityIndicator
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AppCenter
+    - FTLinearActivityIndicator
+
+SPEC CHECKSUMS:
+  AppCenter: c41422e3d69220d17a622e48edebb8c1e0d06ec9
+  FTLinearActivityIndicator: 795016cde13c7d7e9ee28e23f05025c6aedbafce
+
+PODFILE CHECKSUM: 06f4ebe2899600f787a5959125c0b20bce83e1e9
+
+COCOAPODS: 1.6.1
