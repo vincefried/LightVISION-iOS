@@ -150,6 +150,51 @@
                                 </constraints>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoQ-5t-XF4">
+                                <rect key="frame" x="16" y="481" width="160" height="124"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5U5-Rx-Jc6">
+                                    <rect key="frame" x="0.0" y="0.0" width="160" height="124"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bq0-pY-7x5">
+                                            <rect key="frame" x="16" y="16" width="128" height="92"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Augenposition" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJl-fN-PO6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                    <color key="textColor" name="LightGray"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4di-X2-Jfb">
+                                                    <rect key="frame" x="0.0" y="25" width="128" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <color key="textColor" name="Highlight"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kalibrierungswerte" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZN-dW-Xhv">
+                                                    <rect key="frame" x="0.0" y="50" width="128" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                    <color key="textColor" name="LightGray"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bb-Ks-edH">
+                                                    <rect key="frame" x="0.0" y="75" width="128" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <color key="textColor" name="Highlight"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bq0-pY-7x5" firstAttribute="top" secondItem="5U5-Rx-Jc6" secondAttribute="top" constant="16" id="IxQ-XR-Cjd"/>
+                                        <constraint firstItem="bq0-pY-7x5" firstAttribute="leading" secondItem="5U5-Rx-Jc6" secondAttribute="leading" constant="16" id="S2y-GG-YaG"/>
+                                        <constraint firstAttribute="trailing" secondItem="bq0-pY-7x5" secondAttribute="trailing" constant="16" id="b7I-pG-ATN"/>
+                                        <constraint firstAttribute="bottom" secondItem="bq0-pY-7x5" secondAttribute="bottom" constant="16" id="m9i-MW-xMB"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
@@ -158,11 +203,13 @@
                             <constraint firstItem="9lB-YC-LJX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ebr-4i-Brv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZmL-wA-vXP" secondAttribute="trailing" id="JfQ-Uz-biA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xJq-oM-AEa" secondAttribute="trailing" constant="16" id="KfK-kJ-42D"/>
+                            <constraint firstItem="rQ4-m7-cYY" firstAttribute="top" secondItem="AoQ-5t-XF4" secondAttribute="bottom" constant="16" id="Ksw-5n-OyB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rQ4-m7-cYY" secondAttribute="bottom" id="UW3-hI-ocA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9lB-YC-LJX" secondAttribute="trailing" id="Us2-sD-JG7"/>
                             <constraint firstItem="xJq-oM-AEa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YXg-74-gDd"/>
                             <constraint firstItem="9lB-YC-LJX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cR2-85-zTm"/>
                             <constraint firstItem="rQ4-m7-cYY" firstAttribute="trailing" secondItem="xJq-oM-AEa" secondAttribute="trailing" id="d7W-DE-P9T"/>
+                            <constraint firstItem="rQ4-m7-cYY" firstAttribute="leading" secondItem="AoQ-5t-XF4" secondAttribute="leading" id="glY-pi-foG"/>
                             <constraint firstItem="xJq-oM-AEa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="iy1-fj-QuO"/>
                             <constraint firstAttribute="bottom" secondItem="9lB-YC-LJX" secondAttribute="bottom" id="jkf-Uh-Oej"/>
                             <constraint firstItem="ZmL-wA-vXP" firstAttribute="top" secondItem="xJq-oM-AEa" secondAttribute="bottom" id="oRI-pF-pNt"/>
@@ -173,6 +220,9 @@
                     <connections>
                         <outlet property="activityIndicator" destination="NFs-yA-nwd" id="vS2-94-U3X"/>
                         <outlet property="connectingLabel" destination="vRX-MT-HuY" id="v86-6o-S50"/>
+                        <outlet property="debugCalibrationLabel" destination="1bb-Ks-edH" id="vGV-OP-gN5"/>
+                        <outlet property="debugLabel" destination="4di-X2-Jfb" id="8OX-wf-5eV"/>
+                        <outlet property="debugVisualEffectView" destination="AoQ-5t-XF4" id="wOE-rv-zMd"/>
                         <outlet property="faceActivityIndicator" destination="Ml9-aJ-0xI" id="hJj-bL-R6u"/>
                         <outlet property="refreshButton" destination="JaL-wz-WGZ" id="52c-Wi-DXZ"/>
                         <outlet property="sceneView" destination="9lB-YC-LJX" id="2j8-vA-ZGN"/>
@@ -218,25 +268,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94M-F2-BpV">
-                                <rect key="frame" x="77" y="291" width="221" height="230"/>
+                                <rect key="frame" x="58.666666666666657" y="267.66666666666669" width="258" height="277.00000000000006"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UCd-c5-Y3m">
-                                    <rect key="frame" x="0.0" y="0.0" width="221" height="230"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="258" height="277.00000000000006"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="aYd-U9-TbE">
-                                            <rect key="frame" x="32" y="32" width="157" height="166"/>
+                                            <rect key="frame" x="32" y="32" width="194" height="213"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ApU-vN-7WQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="157" height="60.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="194" height="60.666666666666664"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verbindung" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgZ-E6-gYA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="157" height="26.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="194" height="26.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="22"/>
                                                             <color key="textColor" name="LightGray"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name: Gerätename" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0za-X4-kYc">
-                                                            <rect key="frame" x="0.0" y="34.333333333333314" width="157" height="26.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="34.333333333333314" width="194" height="26.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="22"/>
                                                             <color key="textColor" name="Highlight"/>
                                                             <nil key="highlightedColor"/>
@@ -244,27 +294,46 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="lQG-e4-jIh">
-                                                    <rect key="frame" x="0.0" y="92.666666666666686" width="157" height="73.333333333333314"/>
+                                                    <rect key="frame" x="0.0" y="92.666666666666629" width="194" height="120.33333333333331"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Einstellungen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhm-it-YKn">
-                                                            <rect key="frame" x="0.0" y="0.0" width="157" height="26.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="194" height="26.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="22"/>
                                                             <color key="textColor" name="LightGray"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Wta-vr-d71">
-                                                            <rect key="frame" x="0.0" y="42.333333333333314" width="157" height="31"/>
+                                                            <rect key="frame" x="0.0" y="42.333333333333371" width="194" height="31"/>
                                                             <subviews>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="23p-Qj-Eh4">
                                                                     <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                                     <color key="onTintColor" name="Green"/>
                                                                     <color key="thumbTintColor" name="Highlight"/>
                                                                     <connections>
-                                                                        <action selector="toggledSwitch:" destination="PZM-cu-sZd" eventType="valueChanged" id="v7y-4q-uIp"/>
+                                                                        <action selector="toggledDebugSwitch:" destination="PZM-cu-sZd" eventType="valueChanged" id="muE-ZR-9jW"/>
                                                                     </connections>
                                                                 </switch>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kod-T9-y98">
-                                                                    <rect key="frame" x="65" y="0.0" width="92" height="31"/>
+                                                                    <rect key="frame" x="65" y="0.0" width="129" height="31"/>
+                                                                    <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="22"/>
+                                                                    <color key="textColor" name="Highlight"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-SG-nQB">
+                                                            <rect key="frame" x="0.0" y="89.333333333333371" width="194" height="31"/>
+                                                            <subviews>
+                                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KhI-U1-v4l">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                                    <color key="onTintColor" name="Green"/>
+                                                                    <color key="thumbTintColor" name="Highlight"/>
+                                                                    <connections>
+                                                                        <action selector="toggledVoiceSwitch:" destination="PZM-cu-sZd" eventType="valueChanged" id="iGb-4N-rg5"/>
+                                                                    </connections>
+                                                                </switch>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sprachassistenz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shw-Yd-0Ps">
+                                                                    <rect key="frame" x="65" y="0.0" width="129" height="31"/>
                                                                     <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="22"/>
                                                                     <color key="textColor" name="Highlight"/>
                                                                     <nil key="highlightedColor"/>
@@ -334,6 +403,7 @@
                         <outlet property="connectedWithLabel" destination="0za-X4-kYc" id="LCq-Tq-i3o"/>
                         <outlet property="debugSwitch" destination="23p-Qj-Eh4" id="eej-gV-q9K"/>
                         <outlet property="visualEffectsView" destination="94M-F2-BpV" id="Gxs-9u-TxS"/>
+                        <outlet property="voiceSwitch" destination="KhI-U1-v4l" id="0uJ-kS-e00"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bds-3f-wiU" userLabel="First Responder" sceneMemberID="firstResponder"/>

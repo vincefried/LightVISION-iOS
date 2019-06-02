@@ -32,6 +32,8 @@
 		0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE11340225CC50A002A3429 /* EyePosition.swift */; };
 		0BFA23D222A3CF0E00D7638D /* Ailerons-Typeface.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BFA23D122A3CF0E00D7638D /* Ailerons-Typeface.ttf */; };
 		0BFA23D422A3CFA800D7638D /* Chalifor Dalsatic DEMO.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BFA23D322A3CFA400D7638D /* Chalifor Dalsatic DEMO.ttf */; };
+		0BFA23D622A3D78100D7638D /* DebugViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA23D522A3D78100D7638D /* DebugViewModel.swift */; };
+		0BFA23D822A3E57300D7638D /* SpeechWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA23D722A3E57300D7638D /* SpeechWorker.swift */; };
 		B1CB4446893589DF703F5E90 /* Pods_EyeFighterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502450CFB9829ADCEB17FD13 /* Pods_EyeFighterTests.framework */; };
 		DB954BF95F4E9D0C4C44DA70 /* Pods_EyeFighter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F98224B78619B6BB861388 /* Pods_EyeFighter.framework */; };
 		FFCC6DD056C6DE9BA50284AF /* Pods_EyeFighterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC13D9B4744C47D31462BAD8 /* Pods_EyeFighterUITests.framework */; };
@@ -86,6 +88,8 @@
 		0BE11340225CC50A002A3429 /* EyePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyePosition.swift; sourceTree = "<group>"; };
 		0BFA23D122A3CF0E00D7638D /* Ailerons-Typeface.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ailerons-Typeface.ttf"; sourceTree = "<group>"; };
 		0BFA23D322A3CFA400D7638D /* Chalifor Dalsatic DEMO.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chalifor Dalsatic DEMO.ttf"; sourceTree = "<group>"; };
+		0BFA23D522A3D78100D7638D /* DebugViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewModel.swift; sourceTree = "<group>"; };
+		0BFA23D722A3E57300D7638D /* SpeechWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechWorker.swift; sourceTree = "<group>"; };
 		14E2F6B18A36233FC1412579 /* Pods-EyeFighterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyeFighterTests.debug.xcconfig"; path = "Target Support Files/Pods-EyeFighterTests/Pods-EyeFighterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		29F98224B78619B6BB861388 /* Pods_EyeFighter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EyeFighter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7268310208E3E494EA04EC /* Pods-EyeFighter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EyeFighter.release.xcconfig"; path = "Target Support Files/Pods-EyeFighter/Pods-EyeFighter.release.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 			children = (
 				0BE11340225CC50A002A3429 /* EyePosition.swift */,
 				0BD080FF225C9FBD0089209A /* Calibration.swift */,
+				0BFA23D722A3E57300D7638D /* SpeechWorker.swift */,
 			);
 			path = Calibration;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				0BD1444E229D2FA900A60FC1 /* SettingsViewModel.swift */,
 				0BD1445F229E7E0E00A60FC1 /* SetupViewModel.swift */,
 				0B4D516C22A187F600C6E4D8 /* ConnectionViewModel.swift */,
+				0BFA23D522A3D78100D7638D /* DebugViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 			files = (
 				0B6400C7228AA3EA00ED58D4 /* ControlXYCommand.swift in Sources */,
 				0B4D516822A02B8100C6E4D8 /* Arrow.swift in Sources */,
+				0BFA23D622A3D78100D7638D /* DebugViewModel.swift in Sources */,
 				0BD1444B229D2E3B00A60FC1 /* SettingsWorker.swift in Sources */,
 				0B4C5C8D226A03E20054722C /* BluetoothCommand.swift in Sources */,
 				0B4D516D22A187F600C6E4D8 /* ConnectionViewModel.swift in Sources */,
@@ -521,6 +528,7 @@
 				0B4C5C882269F7480054722C /* BluetoothWorker.swift in Sources */,
 				0BE11341225CC50A002A3429 /* EyePosition.swift in Sources */,
 				0B1DFEFF2253605000329B7F /* ViewController.swift in Sources */,
+				0BFA23D822A3E57300D7638D /* SpeechWorker.swift in Sources */,
 				0BD08100225C9FBD0089209A /* Calibration.swift in Sources */,
 				0B4D516622A0154800C6E4D8 /* Pupil.swift in Sources */,
 				0B1DFEFD2253605000329B7F /* AppDelegate.swift in Sources */,

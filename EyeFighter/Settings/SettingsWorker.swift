@@ -11,6 +11,7 @@ import Foundation
 class SettingsWorker {
     private enum SettingsKey: String {
         case debugMode = "debug_mode"
+        case voiceAssistant = "voice_assistant"
     }
     
     var isDebugModeEnabled: Bool {
@@ -20,6 +21,16 @@ class SettingsWorker {
         
         get {
             return UserDefaults.standard.bool(forKey: SettingsKey.debugMode.rawValue)
+        }
+    }
+    
+    var isVoiceAssistantEnabled: Bool {
+        set {
+            UserDefaults.standard.set(newValue, forKey: SettingsKey.voiceAssistant.rawValue)
+        }
+        
+        get {
+            return UserDefaults.standard.bool(forKey: SettingsKey.voiceAssistant.rawValue)
         }
     }
 }

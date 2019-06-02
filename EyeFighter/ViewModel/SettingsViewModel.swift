@@ -11,6 +11,7 @@ import Foundation
 struct SettingsViewModel {
     let connectedLabelText: String
     let isDebugSwitchOn: Bool
+    let isVoiceSwitchOn: Bool
         
     private let settingsWorker: SettingsWorker
     
@@ -23,9 +24,14 @@ struct SettingsViewModel {
             self.connectedLabelText = "Keine Verbindung"
         }
         self.isDebugSwitchOn = settingsWorker.isDebugModeEnabled
+        self.isVoiceSwitchOn = settingsWorker.isVoiceAssistantEnabled
     }
     
     func handleDebugSwitchChanged(isDebugModeEnabled: Bool) {
         settingsWorker.isDebugModeEnabled = isDebugModeEnabled
+    }
+    
+    func handleVoiceSwitchChanged(isVoiceAssistantEnabled: Bool) {
+        settingsWorker.isVoiceAssistantEnabled = isVoiceAssistantEnabled
     }
 }
