@@ -17,7 +17,11 @@ struct SettingsViewModel {
     init(settingsWorker: SettingsWorker, bluetoothWorker: BluetoothWorker) {
         self.settingsWorker = settingsWorker
         
-        self.connectedLabelText = "Verbunden mit: " + (bluetoothWorker.connectedPeripheral?.name ?? "Keinem Gerät")
+        if let peripheral = bluetoothWorker.connectedPeripheral {
+            self.connectedLabelText = "Name: \(peripheral.name ?? "Unbekannt")\nUUID: \(peripheral.identifier.uuidString)"
+        } else {
+            self.connectedLabelText = "Keine Verbindung"
+        }
         self.isDebugSwitchOn = settingsWorker.isDebugModeEnabled
     }
     
