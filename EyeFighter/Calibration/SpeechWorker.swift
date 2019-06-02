@@ -19,13 +19,13 @@ class SpeechWorker {
         case .center:
             return "Schau in die Mitte auf den Punkt an der Wand und tippe währenddessen auf den Bildschirm. Es ist nicht schlimm wenn der Punkt vom iPhone verdeckt wird."
         case .right:
-            return "Schau jetzt nach rechts auf den Punkt an der Wand und tippe währenddessen auf den Bildschirm."
+            return "Schau auf den rechten Punkt und tippe."
         case .down:
-            return "Schau jetzt nach unten auf den Punkt an der Wand und tippe währenddessen auf den Bildschirm."
+            return "Schau auf den unteren Punkt und tippe."
         case .left:
-            return "Schau jetzt nach links auf den Punkt an der Wand und tippe währenddessen auf den Bildschirm."
+            return "Schau auf den linken Punkt und tippe."
         case .up:
-            return "Schau jetzt nach oben auf den Punkt an der Wand und tippe währenddessen auf den Bildschirm."
+            return "Schau auf den oberen Punkt und tippe."
         case .done:
             return "Die Kalibrierung ist abgeschlossen. Zum Zurücksetzen berühre für einige Sekunden den Bildschirm. Viel Spaß!"
         }

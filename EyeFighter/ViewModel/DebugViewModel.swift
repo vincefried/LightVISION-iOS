@@ -32,8 +32,12 @@ class DebugViewModel {
         self.settingsWorker = settingsWorker
     }
     
-    func updateEyePositionInfo(eyePosition: EyePosition, rawX: Float, rawY: Float) {
-        self.eyePositionLabelText = String(format: "Raw -> x: %.2f y: %.2f\nConverted -> x: %d y: %d", rawX, rawY, eyePosition.x, eyePosition.y)
+    func updateEyePositionInfo(eyePosition: EyePosition?, rawX: Float, rawY: Float) {
+        if let eyePosition = eyePosition {
+            self.eyePositionLabelText = String(format: "Raw -> x: %.2f y: %.2f\nConverted -> x: %d y: %d", rawX, rawY, eyePosition.x, eyePosition.y)
+        } else {
+            self.eyePositionLabelText = String(format: "Raw -> x: %.2f y: %.2f", rawX, rawY)
+        }
         delegate?.updateDebugUINeeded()
     }
     

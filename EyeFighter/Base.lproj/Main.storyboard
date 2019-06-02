@@ -268,9 +268,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94M-F2-BpV">
-                                <rect key="frame" x="58.666666666666657" y="267.66666666666669" width="258" height="277.00000000000006"/>
+                                <rect key="frame" x="58.666666666666657" y="172" width="258" height="277"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UCd-c5-Y3m">
-                                    <rect key="frame" x="0.0" y="0.0" width="258" height="277.00000000000006"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="258" height="277"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="aYd-U9-TbE">
@@ -286,7 +286,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name: Gerätename" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0za-X4-kYc">
-                                                            <rect key="frame" x="0.0" y="34.333333333333314" width="194" height="26.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="34.333333333333343" width="194" height="26.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="HauserCondensed" family="Hauser Condensed" pointSize="22"/>
                                                             <color key="textColor" name="Highlight"/>
                                                             <nil key="highlightedColor"/>
@@ -294,7 +294,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="lQG-e4-jIh">
-                                                    <rect key="frame" x="0.0" y="92.666666666666629" width="194" height="120.33333333333331"/>
+                                                    <rect key="frame" x="0.0" y="92.666666666666686" width="194" height="120.33333333333331"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Einstellungen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhm-it-YKn">
                                                             <rect key="frame" x="0.0" y="0.0" width="194" height="26.333333333333332"/>
@@ -303,7 +303,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Wta-vr-d71">
-                                                            <rect key="frame" x="0.0" y="42.333333333333371" width="194" height="31"/>
+                                                            <rect key="frame" x="0.0" y="42.333333333333314" width="194" height="31"/>
                                                             <subviews>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="23p-Qj-Eh4">
                                                                     <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -322,7 +322,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-SG-nQB">
-                                                            <rect key="frame" x="0.0" y="89.333333333333371" width="194" height="31"/>
+                                                            <rect key="frame" x="0.0" y="89.333333333333314" width="194" height="31"/>
                                                             <subviews>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KhI-U1-v4l">
                                                                     <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -378,14 +378,16 @@
                         <constraints>
                             <constraint firstItem="hkB-r7-JFR" firstAttribute="trailing" secondItem="alS-HP-Ta1" secondAttribute="trailing" id="1Yx-lx-FRj"/>
                             <constraint firstAttribute="bottom" secondItem="alS-HP-Ta1" secondAttribute="bottom" id="5yT-bx-a6u"/>
+                            <constraint firstItem="hkB-r7-JFR" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="94M-F2-BpV" secondAttribute="trailing" constant="32" id="A2X-tZ-o49"/>
                             <constraint firstItem="Ji9-Q7-22u" firstAttribute="top" secondItem="NYI-4F-YaO" secondAttribute="bottom" constant="16" id="E6t-cP-fDD"/>
-                            <constraint firstItem="94M-F2-BpV" firstAttribute="centerY" secondItem="oHE-Es-I63" secondAttribute="centerY" id="F5o-JT-t3t"/>
                             <constraint firstItem="alS-HP-Ta1" firstAttribute="top" secondItem="oHE-Es-I63" secondAttribute="top" id="HfI-7H-WwI"/>
+                            <constraint firstItem="94M-F2-BpV" firstAttribute="top" secondItem="hkB-r7-JFR" secondAttribute="top" constant="32" id="LcI-Ig-VEu"/>
                             <constraint firstItem="94M-F2-BpV" firstAttribute="centerX" secondItem="oHE-Es-I63" secondAttribute="centerX" id="M4D-Xs-3Sb"/>
                             <constraint firstItem="Ji9-Q7-22u" firstAttribute="leading" secondItem="a8D-xA-DnY" secondAttribute="leading" id="Rle-5x-0O6"/>
                             <constraint firstItem="hkB-r7-JFR" firstAttribute="trailing" secondItem="Ji9-Q7-22u" secondAttribute="trailing" constant="16" id="Uyt-Jh-wyv"/>
                             <constraint firstItem="alS-HP-Ta1" firstAttribute="leading" secondItem="hkB-r7-JFR" secondAttribute="leading" id="crK-Es-8OZ"/>
                             <constraint firstItem="hkB-r7-JFR" firstAttribute="trailing" secondItem="NYI-4F-YaO" secondAttribute="trailing" constant="16" id="cvW-ak-1ur"/>
+                            <constraint firstItem="94M-F2-BpV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hkB-r7-JFR" secondAttribute="leading" constant="32" id="mot-om-24Z"/>
                             <constraint firstItem="Ji9-Q7-22u" firstAttribute="leading" secondItem="hkB-r7-JFR" secondAttribute="leading" constant="16" id="rvv-Ld-ntS"/>
                             <constraint firstItem="hkB-r7-JFR" firstAttribute="bottom" secondItem="Ji9-Q7-22u" secondAttribute="bottom" constant="16" id="t92-Ck-DOu"/>
                             <constraint firstItem="Ji9-Q7-22u" firstAttribute="top" secondItem="a8D-xA-DnY" secondAttribute="bottom" constant="16" id="yIS-hM-9y8"/>

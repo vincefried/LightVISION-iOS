@@ -230,13 +230,14 @@ extension ViewController: ARSCNViewDelegate {
             faceGeometry.update(from: faceAnchor.geometry)
         }
         
-        guard let position = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y) else { return }
+        let eyePosition = calibration.getPosition(x: faceAnchor.lookAtPoint.x, y: faceAnchor.lookAtPoint.y)
         
         DispatchQueue.main.async {
-            self.debugViewModel.updateEyePositionInfo(eyePosition: position, rawX: faceAnchor.lookAtPoint.x, rawY: faceAnchor.lookAtPoint.y)
+            self.debugViewModel.updateEyePositionInfo(eyePosition: eyePosition, rawX: faceAnchor.lookAtPoint.x, rawY: faceAnchor.lookAtPoint.y)
         }
         
-        let command = ControlXYCommand(direction: position)
+        guard let direction = eyePosition else { return }
+        let command = ControlXYCommand(direction: direction)
         bluetoothWorker.send(command)
     }
 }
