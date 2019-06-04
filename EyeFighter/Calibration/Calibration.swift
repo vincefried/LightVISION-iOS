@@ -130,11 +130,11 @@ class Calibration {
         case .right:
             border = (x: 76, y: 150)
         case .down:
-            border = (x: 128, y: 200)
+            border = (x: 128, y: 220)
         case .left:
             border = (x: 180, y: 150)
         case .up:
-            border = (x: 128, y: 100)
+            border = (x: 128, y: 50)
         case .initial:
             border = (x: 128, y: 150)
         case .done:
@@ -155,7 +155,7 @@ class Calibration {
         let yBorder: Float = y < centerY ? minY : maxY
         
         let xFactor: Float = ((Float(Calibration.getCalibrationBorder(for: .right).x) - Float(Calibration.getCalibrationBorder(for: .center).x))
-            / abs(xBorder)) * 1.4
+            / abs(xBorder)) * 0.8
         let yFactor: Float = ((Float(Calibration.getCalibrationBorder(for: .up).y) - Float(Calibration.getCalibrationBorder(for: .center).y))
             / abs(yBorder)) * 0.8
         
