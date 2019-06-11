@@ -8,7 +8,7 @@
 This project uses ARKit 2.0 to map the user's eye viewing transform to a bluetooth connected DMX pan-tilt-device.
 It connects to an arduino, running this code [LightVISION for Arduino](https://github.com/vincefried/LightVISION-Arduino).
 
-The project for created as part of a uni project at the HAW Hamburg, Germany for the lesson "Mobile Systems".
+The project was created as part of a uni project at the HAW Hamburg, Germany for the lesson "Mobile Systems".
 
 ## 🛠 Requirements
 
