@@ -22,8 +22,8 @@ The project for created as part of a uni project at the HAW Hamburg, Germany for
 - [Indieground](https://indieground.net) for having very nice 80s visual templates which the logo was created from
 - [@futuretap](https://github.com/futuretap) for the nice [activity indicator](https://github.com/futuretap/FTLinearActivityIndicator)
 - And the creators of the following fonts:
-    - Hauser
-    - Chalifor Dalsatic
+    - [Hauser](https://www.dafont.com/hauser.font)
+    - [Chalifor Dalsatic](https://www.dafont.com/chalifor-dalsatic.font)
 
 [swift-image]:https://img.shields.io/badge/swift-4.2-orange.svg
 [swift-url]: https://swift.org/
