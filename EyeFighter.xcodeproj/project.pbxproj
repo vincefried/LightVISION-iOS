@@ -161,13 +161,11 @@
 				0B4C5C892269F7540054722C /* Calibration */,
 				0B4C5C842269F7330054722C /* Bluetooth */,
 				0B4C5C832269F72C0054722C /* Commands */,
-				0B1DFEFC2253605000329B7F /* AppDelegate.swift */,
-				0B1DFEFE2253605000329B7F /* ViewController.swift */,
-				0BD14447229D299B00A60FC1 /* SettingsViewController.swift */,
-				0B1DFF002253605000329B7F /* Main.storyboard */,
+				0B97E7AB22AFCAF700FAB37F /* ViewControllers */,
+				0B97E7AC22AFCB1100FAB37F /* Storyboards */,
 				0B4D516222A0149B00C6E4D8 /* Models.scnassets */,
 				0B1DFF032253605300329B7F /* Assets.xcassets */,
-				0B1DFF052253605300329B7F /* LaunchScreen.storyboard */,
+				0B1DFEFC2253605000329B7F /* AppDelegate.swift */,
 				0B1DFF082253605300329B7F /* Info.plist */,
 			);
 			path = EyeFighter;
@@ -226,6 +224,24 @@
 				0B4D516722A02B8100C6E4D8 /* Arrow.swift */,
 			);
 			path = ARNodes;
+			sourceTree = "<group>";
+		};
+		0B97E7AB22AFCAF700FAB37F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B1DFEFE2253605000329B7F /* ViewController.swift */,
+				0BD14447229D299B00A60FC1 /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0B97E7AC22AFCB1100FAB37F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0B1DFF002253605000329B7F /* Main.storyboard */,
+				0B1DFF052253605300329B7F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		0BD14449229D2E3100A60FC1 /* Settings */ = {

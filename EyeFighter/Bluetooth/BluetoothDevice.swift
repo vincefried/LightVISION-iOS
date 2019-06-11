@@ -8,9 +8,13 @@
 
 import Foundation
 
+/// An enum that represents a bluetooth device.
+/// Use it to connect with a device, compatible with the [BluetoothWorker](x-source-tag://BluetoothWorker).
+/// - Tag: BluetoothDevice
 enum BluetoothDevice: String {
-    case laservision = "LightVISION"
+    case lightvision = "LightVISION"
     
+    /// The name of the bluetooth device, represented by the enum's raw value.
     var name: String {
         return rawValue
     }

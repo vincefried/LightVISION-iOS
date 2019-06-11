@@ -8,9 +8,11 @@
 
 import Foundation
 
+/// An enum that respresents a calibration state.
 enum CalibrationState: String {
     case initial, center, right, left, up, down, done
     
+    /// The next possible calibration state after the current.
     var next: CalibrationState {
         switch self {
         case .initial:
@@ -35,64 +37,86 @@ protocol CalibrationDelegate {
     /// Gets called when calibration state did change.
     ///
     /// - Parameter state: The new calinrationstate
+    /// - Tag: calibrationStateDidChange
     func calibrationStateDidChange(to state: CalibrationState)
     /// Gets called when any of the calibration values have been set.
     ///
     /// - Parameters:
     ///   - state: The state for which the values have been set
     ///   - value: The new value
+    /// - Tag: calibrationDidChange
     func calibrationDidChange(for state: CalibrationState, value: Float)
     /// Gets called when the face detection state changed.
     ///
     /// - Parameter isFaceDetected: If the face has been detected
+    /// - Tag: changedFaceDetectedState
     func changedFaceDetectedState(isFaceDetected: Bool)
 }
 
+/// A class that helps calibrating the eye position of the user to the external device in between given borders.
 class Calibration {
+    
+    // MARK: - Variables
     var delegate: CalibrationDelegate?
     
+    /// Indicates if a face has been detected.
+    /// Calls [changedFaceDetectedState](x-source-tag://changedFaceDetectedState) if changed.
     var isFaceDetected: Bool = false {
         didSet {
             delegate?.changedFaceDetectedState(isFaceDetected: isFaceDetected)
         }
     }
     
+    /// The current calibration state.
+    /// Calls [calibrationStateDidChange](x-source-tag://calibrationStateDidChange) if changed.
     var state: CalibrationState = .initial {
         didSet {
             delegate?.calibrationStateDidChange(to: state)
         }
     }
     
+    /// Holds the current x value in the center of the calibration.
+    /// Calls [calibrationDidChange](x-source-tag://calibrationDidChange) if changed.
     var centerX: Float? {
         didSet {
             guard let value = centerX else { return }
             delegate?.calibrationDidChange(for: state, value: value)
         }
     }
+    /// Holds the current y value in the center of the calibration.
+    /// Calls [calibrationDidChange](x-source-tag://calibrationDidChange) if changed.
     var centerY: Float? {
         didSet {
             guard let value = centerY else { return }
             delegate?.calibrationDidChange(for: state, value: value)
         }
     }
+    /// Holds the current maximum x value in the center of the calibration.
+    /// Calls [calibrationDidChange](x-source-tag://calibrationDidChange) if changed.
     var maxX: Float? {
         didSet {
             guard let value = maxX else { return }
             delegate?.calibrationDidChange(for: state, value: value)
         }
     }
+    /// Holds the current minimum x value in the center of the calibration.
+    /// Calls [calibrationDidChange](x-source-tag://calibrationDidChange) if changed.
     var minX: Float? {
         didSet {
             guard let value = minX else { return }
             delegate?.calibrationDidChange(for: state, value: value)
         }
     }
+    /// Holds the current maximum y value in the center of the calibration.
+    /// Calls [calibrationDidChange](x-source-tag://calibrationDidChange) if changed.
     var maxY: Float? {
         didSet {
             guard let value = maxY else { return }
             delegate?.calibrationDidChange(for: state, value: value)
         }
     }
+    /// Holds the current minimum y value in the center of the calibration.
+    /// Calls [calibrationDidChange](x-source-tag://calibrationDidChange) if changed.
     var minY: Float? {
         didSet {
             guard let value = minY else { return }
@@ -100,6 +124,11 @@ class Calibration {
         }
     }
     
+    /// Calibrates to given values on the x- and y-axis of a linear coordinate system.
+    ///
+    /// - Parameters:
+    ///   - x: The value on the x-axis
+    ///   - y: The value on the y-axis
     func calibrate(to x: Float, y: Float) {
         switch state {
         case .center:
@@ -118,10 +147,13 @@ class Calibration {
         }
     }
     
+    /// Continues calibration to the next state.
     func next() {
         state = state.next
     }
     
+    /// Resets calibration the the initial state.
+    /// Resets all calibrated values to `nil`.
     func reset() {
         state = .initial
         
@@ -133,6 +165,11 @@ class Calibration {
         centerY = nil
     }
     
+    /// Gets the calibration border for a given calibration state.
+    /// Represents the maximum or minimum values on the x or y axis in a linear coordinate system.
+    ///
+    /// - Parameter state: The given state to return the border for
+    /// - Returns: The border for the given tate as tuple with values `x` and `y`
     static func getCalibrationBorder(for state: CalibrationState) -> (x: Int, y: Int) {
         var border = (x: 0, y: 0)
         switch state {
@@ -154,6 +191,13 @@ class Calibration {
         return (x: 255 - border.x, y: 255 - border.y)
     }
     
+    /// Converts given x and y values in the coordinate system of an `ARFaceAnchor` to an `EyePosition`,
+    /// respecting the calibrated borders.
+    ///
+    /// - Parameters:
+    ///   - x: The given x value as part of `leftEyeTransform` or `lookAtPoint.x` of `ARFaceAnchor`
+    ///   - y: The given y value as part of `rightEyeTransform` or `lookAtPoint.y` of `ARFaceAnchor`
+    /// - Returns: The resulting `EyePosition`
     func getPosition(x: Float, y: Float) -> EyePosition? {
         guard let maxX = maxX,
             let minX = minX,

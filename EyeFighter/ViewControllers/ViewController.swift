@@ -10,71 +10,71 @@ import UIKit
 import ARKit
 import FTLinearActivityIndicator
 
+/// Main ViewController with the AR Scene View and calibration.
+/// - Tag: ViewController
 class ViewController: UIViewController {
     
     // MARK: - Outlets
     
-    // AR Scene View for face recongintion and calibration animation
+    /// AR Scene View for face recongintion and calibration animation.
     @IBOutlet weak var sceneView: ARSCNView!
-    // Activity indicator for bluetooth connection
+    /// Activity indicator for bluetooth connection.
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    // Label for displaying connection state
+    /// Label for displaying connection state.
     @IBOutlet weak var connectingLabel: UILabel!
-    // Refresh button for connection retry if connection failed
+    /// Refresh button for connection retry if connection failed.
     @IBOutlet weak var refreshButton: UIButton!
-    // Visual effect view for lower container including calibration guide
+    /// Visual effect view for lower container including calibration guide.
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    // Activity indicator if no face is recognized
+    /// Activity indicator if no face is recognized.
     @IBOutlet weak var faceActivityIndicator: FTLinearActivityIndicator!
-    // Visual effect view for upper container inclusing bluetooth connection info
+    /// Visual effect view for upper container inclusing bluetooth connection info.
     @IBOutlet weak var upperContainerView: UIVisualEffectView!
-    // Title label of lower setup container
+    /// Title label of lower setup container.
     @IBOutlet weak var setupTitleLabel: UILabel!
-    // Description label of lower setup container
+    /// Description label of lower setup container.
     @IBOutlet weak var setupDescriptionLabel: UILabel!
-    // Debug label of debug container
+    /// Debug label of debug container.
     @IBOutlet weak var debugLabel: UILabel!
-    // Debug label of debug calibrated values container
+    /// Debug label of debug calibrated values container.
     @IBOutlet weak var debugCalibrationLabel: UILabel!
-    // Visual effect view for debug container
+    /// Visual effect view for debug container.
     @IBOutlet weak var debugVisualEffectView: UIVisualEffectView!
     
     // MARK: - Variables
 
-    // The face anchor, including eye transform
+    /// The face anchor, including eye transform.
     var faceAnchor: ARFaceAnchor?
-    // Reference to the left pupil 3D object for calibration
+    /// Reference to the left pupil 3D object for calibration.
     var leftPupil: Pupil?
-    // Reference to the right pupil 3D object for calibration
+    /// Reference to the right pupil 3D object for calibration.
     var rightPupil: Pupil?
-    // Reference to the arrow 3D object for calibration
+    /// Reference to the arrow 3D object for calibration.
     var arrow: Arrow?
     
     // MARK: - Workers
     
-    // Calibration class, holding calibrated values
+    /// Calibration class, holding calibrated values
     let calibration = Calibration()
     
-    // Bluetooth worker for connecting and sending values
+    /// Bluetooth worker for connecting and sending values.
     let bluetoothWorker = BluetoothWorker()
-    // Settings worker for getting settings
+    /// Settings worker for getting settings.
     let settingsWorker = SettingsWorker()
-    // Speech worker for voice guide
+    /// Speech worker for voice guide.
     lazy var speechWorker = SpeechWorker()
     
     // MARK: - ViewModels
 
-    // ViewModel for lower calibration container
+    /// ViewModel for lower calibration container.
     var setupViewModel: SetupViewModel!
-    // ViewModel for upper bluetooth connection container
+    /// ViewModel for upper bluetooth connection container.
     var connectionViewModel: ConnectionViewModel!
-    // ViewModel for optional debug container
+    /// ViewModel for optional debug container.
     var debugViewModel: DebugViewModel!
     
     // MARK: - iOS View lifecycle
     
-    /// Part of the iOS view lifecycle.
-    /// Gets called when views is done loading.
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,29 +117,16 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in self?.bluetoothWorker.scanAndConnect() }
     }
     
-    /// Part of the iOS view lifecycle.
-    /// Gets called after view is done loading and about to appear.
-    ///
-    /// - Parameter animated: If appears animated.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startARView()
     }
     
-    /// Part of the iOS view lifecycle.
-    /// Gets called when the view is about to disappear.
-    ///
-    /// - Parameter animated: If disappears animated.
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         pauseARView()
     }
     
-    /// Gets called if iOS prepars for a segue - e.g. when presenting a new ViewController.
-    ///
-    /// - Parameters:
-    ///   - segue: The presentation segue.
-    ///   - sender: The sender which presents the segue.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Check if sender is SettingsViewController
         if let navigationController = segue.destination as? UINavigationController,
@@ -268,7 +255,7 @@ class ViewController: UIViewController {
     /// Gets called if long press gesture recognizer gets triggered by long pressing on screen.
     /// Resets the calibration.
     ///
-    /// - Parameter sender: The long press gesture recognizer
+    /// - Parameter sender: The long press gesture recognizer.
     @objc private func didLongPress(sender: UILongPressGestureRecognizer) {
         guard sender.state == .began else { return }
         calibration.reset()
