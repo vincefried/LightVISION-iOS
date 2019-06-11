@@ -10,6 +10,7 @@ import Foundation
 
 /// An enum that represents a bluetooth device.
 /// Use it to connect with a device, compatible with the [BluetoothWorker](x-source-tag://BluetoothWorker).
+/// Typically represents an arduino, connected to a DMX-Lightscanner in this case.
 /// - Tag: BluetoothDevice
 enum BluetoothDevice: String {
     case lightvision = "LightVISION"

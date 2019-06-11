@@ -315,8 +315,8 @@ extension ViewController: ARSCNViewDelegate {
         }
         
         // Update arrow position for calibration
-        if let arrow = arrow, let camera = sceneView.pointOfView {
-            arrow.update(position: node.position, camera: camera, calibrationState: calibration.state)
+        if let arrow = arrow {
+            arrow.update(position: node.position, calibrationState: calibration.state)
         }
         
         // Update face geometry

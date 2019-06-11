@@ -62,7 +62,11 @@ protocol CalibrationDelegate {
 }
 
 /// A class that helps calibrating the eye position of the user to the external device in between given borders.
+/// All values to be converted to etc. are created in the standard DMX range of 0-255.
 class Calibration {
+    
+    /// The current offset to stretch or compress the calculation by.
+    private let factorOffset: (x: Float, y: Float) = (x: 0.8, y: 0.8)
     
     // MARK: - Variables
     var delegate: CalibrationDelegate?
@@ -206,7 +210,9 @@ class Calibration {
     ///   - x: The given x value as part of `leftEyeTransform` or `lookAtPoint.x` of `ARFaceAnchor`.
     ///   - y: The given y value as part of `rightEyeTransform` or `lookAtPoint.y` of `ARFaceAnchor`.
     /// - Returns: The resulting `EyePosition`.
+    /// - PreCondition: All values have to be initialized and calibrated.
     func getPosition(x: Float, y: Float) -> EyePosition? {
+        // All values have to be calibrated.
         guard let maxX = maxX,
             let minX = minX,
             let maxY = maxY,
@@ -214,14 +220,17 @@ class Calibration {
             let centerX = centerX,
             let centerY = centerY else { return nil }
         
+        // The maximum value in each direction on the x-axis and y-axis.
         let xBorder: Float = x < centerX ? minX : maxX
         let yBorder: Float = y < centerY ? minY : maxY
         
+        // Calculate the factor for the borders in the x-axis and y-axis.
         let xFactor: Float = ((Float(Calibration.getCalibrationBorder(for: .right).x) - Float(Calibration.getCalibrationBorder(for: .center).x))
-            / abs(xBorder)) * 0.8
+            / abs(xBorder)) * factorOffset.x
         let yFactor: Float = ((Float(Calibration.getCalibrationBorder(for: .up).y) - Float(Calibration.getCalibrationBorder(for: .center).y))
-            / abs(yBorder)) * 0.8
+            / abs(yBorder)) * factorOffset.y
         
+        // Calculate the final values by making sure it does not exceed the DMX's maximum values.
         let newX: Float = max(min(xFactor * x + Float(Calibration.getCalibrationBorder(for: .center).x), 255), 0)
         let newY: Float = max(min(yFactor * y + Float(Calibration.getCalibrationBorder(for: .center).y), 255), 0)
         
