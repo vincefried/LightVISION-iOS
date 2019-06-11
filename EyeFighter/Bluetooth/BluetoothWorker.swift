@@ -14,8 +14,17 @@ enum ConnectionState {
 }
 
 protocol BluetoothWorkerDelegate {
+    /// Gets called if the bluetooth connection state did changed.
+    ///
+    /// - Parameter state: The new state
     func changedConnectionState(_ state: ConnectionState)
+    /// Gets called a bluetooth device connected successfully.
+    ///
+    /// - Parameter device: The device that connected successfully
     func connectedDevice(_ device: BluetoothDevice)
+    /// Gets called a bluetooth device disconnected successfully.
+    ///
+    /// - Parameter device: The device that disconnected successfully
     func disconnectedDevice(_ device: BluetoothDevice)
 }
 

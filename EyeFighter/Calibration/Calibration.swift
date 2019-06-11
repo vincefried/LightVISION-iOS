@@ -32,8 +32,19 @@ enum CalibrationState: String {
 }
 
 protocol CalibrationDelegate {
+    /// Gets called when calibration state did change.
+    ///
+    /// - Parameter state: The new calinrationstate
     func calibrationStateDidChange(to state: CalibrationState)
+    /// Gets called when any of the calibration values have been set.
+    ///
+    /// - Parameters:
+    ///   - state: The state for which the values have been set
+    ///   - value: The new value
     func calibrationDidChange(for state: CalibrationState, value: Float)
+    /// Gets called when the face detection state changed.
+    ///
+    /// - Parameter isFaceDetected: If the face has been detected
     func changedFaceDetectedState(isFaceDetected: Bool)
 }
 

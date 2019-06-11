@@ -9,6 +9,7 @@
 import Foundation
 
 protocol DebugViewModelDelegate {
+    /// Gets called if debug UI needs update.
     func updateDebugUINeeded()
 }
 

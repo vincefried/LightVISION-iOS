@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 protocol ConnectionViewModelDelegate {
+    /// Gets called if connection UI needs update.
     func updateConnectionUINeeded()
 }
 

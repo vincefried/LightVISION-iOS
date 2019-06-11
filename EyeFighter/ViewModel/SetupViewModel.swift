@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 protocol SetupViewModelDelegate {
+    /// Gets called if setup UI needs update.
     func updateSetupUINeeded()
 }
 

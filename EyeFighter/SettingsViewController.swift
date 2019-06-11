@@ -9,6 +9,7 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate {
+    /// Gets called if settings view controller will finish dismissing.
     func settingsViewControllerWillFinish(with viewModel: SettingsViewModel)
 }
 
