@@ -9,6 +9,14 @@
 import Foundation
 
 /// An enum that respresents a calibration state.
+///
+/// - initial: The calibration has not yet started but is in resetted state.
+/// - center: The calibration is in centered state.
+/// - right: The calibration is in right state.
+/// - left: The calibration is in left state.
+/// - up: The calibration is in up state.
+/// - down: The calibration is in down state.
+/// - done: The calibration is done and ready for calling `getPosition(x:_, y:_)`.
 enum CalibrationState: String {
     case initial, center, right, left, up, down, done
     
@@ -36,19 +44,19 @@ enum CalibrationState: String {
 protocol CalibrationDelegate {
     /// Gets called when calibration state did change.
     ///
-    /// - Parameter state: The new calinrationstate
+    /// - Parameter state: The new calinrationstate.
     /// - Tag: calibrationStateDidChange
     func calibrationStateDidChange(to state: CalibrationState)
     /// Gets called when any of the calibration values have been set.
     ///
     /// - Parameters:
-    ///   - state: The state for which the values have been set
-    ///   - value: The new value
+    ///   - state: The state for which the values have been set.
+    ///   - value: The new value.
     /// - Tag: calibrationDidChange
     func calibrationDidChange(for state: CalibrationState, value: Float)
     /// Gets called when the face detection state changed.
     ///
-    /// - Parameter isFaceDetected: If the face has been detected
+    /// - Parameter isFaceDetected: If the face has been detected.
     /// - Tag: changedFaceDetectedState
     func changedFaceDetectedState(isFaceDetected: Bool)
 }
@@ -127,8 +135,8 @@ class Calibration {
     /// Calibrates to given values on the x- and y-axis of a linear coordinate system.
     ///
     /// - Parameters:
-    ///   - x: The value on the x-axis
-    ///   - y: The value on the y-axis
+    ///   - x: The value on the x-axis.
+    ///   - y: The value on the y-axis.
     func calibrate(to x: Float, y: Float) {
         switch state {
         case .center:
@@ -168,8 +176,8 @@ class Calibration {
     /// Gets the calibration border for a given calibration state.
     /// Represents the maximum or minimum values on the x or y axis in a linear coordinate system.
     ///
-    /// - Parameter state: The given state to return the border for
-    /// - Returns: The border for the given tate as tuple with values `x` and `y`
+    /// - Parameter state: The given state to return the border for.
+    /// - Returns: The border for the given tate as tuple with values `x` and `y`.
     static func getCalibrationBorder(for state: CalibrationState) -> (x: Int, y: Int) {
         var border = (x: 0, y: 0)
         switch state {
@@ -195,9 +203,9 @@ class Calibration {
     /// respecting the calibrated borders.
     ///
     /// - Parameters:
-    ///   - x: The given x value as part of `leftEyeTransform` or `lookAtPoint.x` of `ARFaceAnchor`
-    ///   - y: The given y value as part of `rightEyeTransform` or `lookAtPoint.y` of `ARFaceAnchor`
-    /// - Returns: The resulting `EyePosition`
+    ///   - x: The given x value as part of `leftEyeTransform` or `lookAtPoint.x` of `ARFaceAnchor`.
+    ///   - y: The given y value as part of `rightEyeTransform` or `lookAtPoint.y` of `ARFaceAnchor`.
+    /// - Returns: The resulting `EyePosition`.
     func getPosition(x: Float, y: Float) -> EyePosition? {
         guard let maxX = maxX,
             let minX = minX,

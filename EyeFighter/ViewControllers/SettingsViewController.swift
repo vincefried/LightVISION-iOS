@@ -14,6 +14,7 @@ protocol SettingsViewControllerDelegate {
 }
 
 /// Settings ViewController with all settings, containing voice assistant, debug mode and bluetooth connection info.
+/// - Tag: SettingsViewController
 class SettingsViewController: UIViewController {
     
     // MARK: - Outlets

@@ -36,7 +36,7 @@ protocol BluetoothWorkerDelegate {
 }
 
 
-/// A worker class that handles the bluetooth connection and wraps it in simple calls.
+/// A worker class that handles the bluetooth connection using Apple's `CoreBluetooth` framework and wraps it in simple calls.
 /// - Tag: BluetoothWorker
 class BluetoothWorker: NSObject {
     

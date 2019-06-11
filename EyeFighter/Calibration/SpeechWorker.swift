@@ -9,9 +9,15 @@
 import Foundation
 import Speech
 
+/// A worker class that handles speech output using Apple's `Speech` framework.
 class SpeechWorker {
+    /// An instance of the speech synthesizer.
     private let synthesizer = AVSpeechSynthesizer()
     
+    /// Gets the descrtiption for a give calibration state.
+    ///
+    /// - Parameter state: The given calibration state to get the description for.
+    /// - Returns: The description in german.
     private func description(for state: CalibrationState) -> String {
         switch state {
         case .initial:
@@ -31,6 +37,9 @@ class SpeechWorker {
         }
     }
     
+    /// Uses the `AVSpeechSynthesizer` to read out a description for a given `CalibrationState`.
+    ///
+    /// - Parameter state: The given `CalibrationState`.
     func introduceCalibrationState(state: CalibrationState) {
         let text = description(for: state)
         let utterence = AVSpeechUtterance(string: text)
