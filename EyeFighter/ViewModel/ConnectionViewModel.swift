@@ -33,9 +33,8 @@ class ConnectionViewModel {
     /// Initializer, called with a `ConnectionState` and an instance of the `BluetoothWorker`.
     ///
     /// - Parameters:
-    ///   - state: The current `ConnectionState`.
     ///   - bluetoothWorker: The current `BluetoothWorker`.
-    init(state: ConnectionState, bluetoothWorker: BluetoothWorker) {
+    init(bluetoothWorker: BluetoothWorker) {
         self.bluetoothWorker = bluetoothWorker
     }
     

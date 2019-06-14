@@ -98,8 +98,7 @@ class ViewController: UIViewController {
         updateSetupContainerUI()
         
         // Init connection viewmodel
-        connectionViewModel = ConnectionViewModel(state: bluetoothWorker.connectionState,
-                                                  bluetoothWorker: bluetoothWorker)
+        connectionViewModel = ConnectionViewModel(bluetoothWorker: bluetoothWorker)
         connectionViewModel.delegate = self
         updateConnectionContainerUI()
         
